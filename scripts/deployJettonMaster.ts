@@ -9,7 +9,7 @@ export async function run(provider: NetworkProvider) {
     }
 
     // TEP-64 Off-chain Metadata URI hosted on GitHub Pages
-    const metadataUrl = "https://galrei.github.io/grafik-tabranij-gt-token/metadata/metadata.json";
+    const metadataUrl = "https://galrei.github.io/grafiktabranij/metadata/metadata.json";
     
     // Build Cell format for TEP-64 off-chain metadata uri (prefix 0x01)
     const contentCell = beginCell()

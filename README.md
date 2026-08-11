@@ -41,16 +41,16 @@ Official repository for **Grafik Tabranij (GT)**, a TEP-74 standard utility toke
 
 To activate GitHub Pages so wallets and DEXes can fetch your token logo and metadata:
 
-1. Open your repository on GitHub: `https://github.com/galrei/grafik-tabranij-gt-token`
+1. Open your repository on GitHub: `https://github.com/galrei/grafiktabranij`
 2. Go to **Settings** -> **Pages**.
 3. Under **Build and deployment** -> **Branch**, select `main` and `/ (root)`.
 4. Click **Save**.
 
 ### Active Public Endpoints:
 - 🖼️ **Logo PNG (256x256):**  
-  `https://galrei.github.io/grafik-tabranij-gt-token/logo/logo.png`
+  `https://galrei.github.io/grafiktabranij/logo/logo.png`
 - 📜 **Metadata JSON (TEP-64):**  
-  `https://galrei.github.io/grafik-tabranij-gt-token/metadata/metadata.json`
+  `https://galrei.github.io/grafiktabranij/metadata/metadata.json`
 
 ---
 
@@ -65,7 +65,7 @@ To activate GitHub Pages so wallets and DEXes can fetch your token logo and meta
    - **Symbol:** `GT`
    - **Decimals:** `9`
    - **Description:** `Utility token for the Grafik Tabranij ecosystem. Used for access, rewards, governance, and services within the project.`
-   - **Off-chain Metadata URI:** `https://galrei.github.io/grafik-tabranij-gt-token/metadata/metadata.json`
+   - **Off-chain Metadata URI:** `https://galrei.github.io/grafiktabranij/metadata/metadata.json`
    - **Amount to Mint:** `1,000,000,000` (1 Billion)
 4. Confirm transaction in your wallet (~0.15 TON fee).
 

@@ -7,7 +7,7 @@ This folder contains the official logo asset for the **Grafik Tabranij (GT)** Je
 - **Resolution:** 256x256 pixels
 - **Format:** PNG (with transparent/dark background)
 - **Public URL (via GitHub Pages):**
-  `https://galrei.github.io/grafik-tabranij-gt-token/logo/logo.png`
+  `https://galrei.github.io/grafiktabranij/logo/logo.png`
 
 ## How to Replace with Your Custom Logo:
 1. Prepare your custom logo image.
