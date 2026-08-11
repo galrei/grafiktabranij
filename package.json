@@ -10,7 +10,9 @@
   "dependencies": {
     "@ton/core": "^0.62.0",
     "@ton/crypto": "^3.3.0",
-    "@ton/ton": "^15.0.0"
+    "@ton/ton": "^15.0.0",
+    "@ton-community/func-js": "^0.7.0",
+    "@ton/tolk-js": "^0.6.0"
   },
   "devDependencies": {
     "@tact-lang/compiler": "^1.6.0",
