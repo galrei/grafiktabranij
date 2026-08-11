@@ -1,5 +1,5 @@
 {
-  "name": "grafik-tabranij-gt-token",
+  "name": "grafiktabranij",
   "version": "1.0.0",
   "description": "Grafik Tabranij (GT) TON Jetton Utility Token",
   "scripts": {
@@ -8,12 +8,11 @@
     "test": "npx blueprint test"
   },
   "dependencies": {
-    "@ton/core": "^0.60.0",
+    "@ton/core": "^0.62.0",
     "@ton/crypto": "^3.3.0",
-    "@ton/ton": "^14.0.0"
+    "@ton/ton": "^15.0.0"
   },
   "devDependencies": {
-    "@stdlib/deploy": "^0.0.1",
     "@tact-lang/compiler": "^1.6.0",
     "@ton/blueprint": "^0.30.0",
     "@ton/sandbox": "^0.29.0",
