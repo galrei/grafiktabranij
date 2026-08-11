@@ -119,8 +119,8 @@ To build trust in your community, revoke admin ownership after minting total sup
 
 | Description | Mainnet Address | Status |
 | :--- | :--- | :--- |
-| **Jetton Master** | `[PLACEHOLDER_MAINNET_ADDRESS]` | Pending Deployment |
-| **Admin Owner** | `[YOUR_TON_WALLET_ADDRESS]` | Active |
+| **Jetton Master** | [`EQBOMoMZeii8Da-zAbaDiTfxw8oySxbA8RwE6mQJ_EMJ8dHR`](https://tonscan.org/address/EQBOMoMZeii8Da-zAbaDiTfxw8oySxbA8RwE6mQJ_EMJ8dHR) | ✅ Deployed |
+| **Admin Owner** | [`EQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTUHT`](https://tonscan.org/address/EQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTUHT) | ✅ Active |
 | **STON.fi LP Pool** | `[PLACEHOLDER_STONFI_POOL]` | Pending LP Creation |
 | **DeDust LP Pool** | `[PLACEHOLDER_DEDUST_POOL]` | Pending LP Creation |
 
