@@ -15,7 +15,7 @@ async function main() {
     const stateInitBase64 = stateInitCell.toBoc().toString('base64');
     
     const deployPayload = beginCell().storeUint(2490013878, 32).storeUint(0, 64).endCell().toBoc().toString('base64');
-    const mintPayload = beginCell().storeUint(4235234258, 32).storeCoins(1000000000000000000n).storeAddress(adminAddress).endCell().toBoc().toString('base64');
+    const mintPayload = beginCell().storeUint(4235234258, 32).storeInt(1000000000000000000n, 257).storeAddress(adminAddress).endCell().toBoc().toString('base64');
 
     const htmlContent = `<!DOCTYPE html>
 <html lang="id">
