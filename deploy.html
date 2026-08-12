@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy & Mint Grafik Tabranij (GT) Token</title>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #38bdf8;
+            --accent: #f59e0b;
+            --text: #f8fafc;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #ton-connect-button {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            transition: all 0.2s ease;
+        }
+        .btn:disabled {
+            background: #475569;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .btn-mint {
+            background: linear-gradient(135deg, #d97706, #f59e0b);
+        }
+        .info-box {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 12px;
+            color: #cbd5e1;
+            word-break: break-all;
+        }
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .pending { color: #fbbf24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo/logo.png" alt="GT Logo" class="logo-img">
+        <h1>Grafik Tabranij (GT)</h1>
+        <div class="badge">TON JETTON UTILITY TOKEN</div>
+        <p>Portal Resmi Web Deployer & Minting GT Token (1 Miliar Supply) ke Dompet Anda.</p>
+
+        <div id="ton-connect-button"></div>
+
+        <button id="btn-deploy" class="btn" disabled>1. DEPLOY JETTON MASTER</button>
+        <button id="btn-mint" class="btn btn-mint" disabled>2. MINT 1.000.000.000 GT TO WALLET</button>
+
+        <div id="status"></div>
+
+        <div class="info-box">
+            <strong>📋 Target Contract Address:</strong><br>
+            <span id="contract-addr">EQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NQHg</span><br><br>
+            <strong>👤 Admin Address:</strong><br>
+            <span id="admin-addr">EQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTUHT</span>
+        </div>
+    </div>
+
+    <script>
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://raw.githubusercontent.com/ton-org/blueprint/main/tonconnect/manifest.json',
+            buttonRootId: 'ton-connect-button'
+        });
+
+        const btnDeploy = document.getElementById('btn-deploy');
+        const btnMint = document.getElementById('btn-mint');
+        const statusDiv = document.getElementById('status');
+
+        const contractAddress = "EQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NQHg";
+        const stateInitBase64 = "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";
+        
+        // Deploy Payload (Deploy message opcode)
+        const deployPayload = "te6cckEBAQEADgAAGJRqmLYAAAAAAAAAAOnNeQ0=";
+
+        // Mint Payload (Mint 1 Billion GT opcode to Admin)
+        const mintPayload = "te6cckEBAQEAGwAANg502X8AAAAAAAAAAGq/gEAAEQE0BgcAGJRqmLY=";
+
+        tonConnectUI.onStatusChange(wallet => {
+            if (wallet) {
+                btnDeploy.disabled = false;
+                btnMint.disabled = false;
+                statusDiv.className = "success";
+                statusDiv.innerText = "✅ Wallet Terhubung: " + wallet.account.address.slice(0,6) + "..." + wallet.account.address.slice(-4);
+            } else {
+                btnDeploy.disabled = true;
+                btnMint.disabled = true;
+                statusDiv.innerText = "";
+            }
+        });
+
+        btnDeploy.addEventListener('click', async () => {
+            if (!tonConnectUI.connected) return;
+            statusDiv.className = "pending";
+            statusDiv.innerText = "⏳ Membuka transaksi Deploy di Wallet...";
+
+            const transaction = {
+                validUntil: Math.floor(Date.now() / 1000) + 600,
+                messages: [
+                    {
+                        address: contractAddress,
+                        amount: "150000000", // 0.15 TON
+                        stateInit: stateInitBase64,
+                        payload: deployPayload
+                    }
+                ]
+            };
+
+            try {
+                const result = await tonConnectUI.sendTransaction(transaction);
+                statusDiv.className = "success";
+                statusDiv.innerText = "🎉 DEPLOY SUCCESSFUL! Sekarang klik tombol 2 untuk Mint 1 Miliar GT.";
+            } catch (e) {
+                statusDiv.className = "error";
+                statusDiv.innerText = "❌ Transaction error: " + (e.message || e);
+            }
+        });
+
+        btnMint.addEventListener('click', async () => {
+            if (!tonConnectUI.connected) return;
+            statusDiv.className = "pending";
+            statusDiv.innerText = "⏳ Membuka transaksi Mint 1 Miliar GT di Wallet...";
+
+            const transaction = {
+                validUntil: Math.floor(Date.now() / 1000) + 600,
+                messages: [
+                    {
+                        address: contractAddress,
+                        amount: "100000000", // 0.10 TON
+                        payload: mintPayload
+                    }
+                ]
+            };
+
+            try {
+                const result = await tonConnectUI.sendTransaction(transaction);
+                statusDiv.className = "success";
+                statusDiv.innerText = "💎 MINTING SUCCESSFUL! 1 Miliar GT telah masuk ke Dompet Anda!";
+            } catch (e) {
+                statusDiv.className = "error";
+                statusDiv.innerText = "❌ Transaction error: " + (e.message || e);
+            }
+        });
+    </script>
+</body>
+</html>
