@@ -68,25 +68,24 @@
             margin: 20px 0;
         }
         .btn {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            background: linear-gradient(135deg, #059669, #10b981);
             color: white;
             border: none;
-            padding: 14px 24px;
-            font-size: 16px;
+            padding: 16px 24px;
+            font-size: 17px;
             font-weight: bold;
             border-radius: 12px;
             cursor: pointer;
             width: 100%;
-            margin-top: 12px;
+            margin-top: 15px;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         .btn:disabled {
             background: #475569;
             cursor: not-allowed;
             opacity: 0.6;
-        }
-        .btn-mint {
-            background: linear-gradient(135deg, #d97706, #f59e0b);
+            box-shadow: none;
         }
         .info-box {
             background: #0f172a;
@@ -102,10 +101,12 @@
             margin-top: 15px;
             font-weight: bold;
             font-size: 14px;
+            padding: 10px;
+            border-radius: 8px;
         }
-        .success { color: #4ade80; }
-        .error { color: #f87171; }
-        .pending { color: #fbbf24; }
+        .success { background: rgba(74, 222, 128, 0.1); color: #4ade80; border: 1px solid #4ade80; }
+        .error { background: rgba(248, 113, 113, 0.1); color: #f87171; border: 1px solid #f87171; }
+        .pending { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border: 1px solid #fbbf24; }
     </style>
 </head>
 <body>
@@ -113,20 +114,19 @@
         <img src="logo/logo.png" alt="GT Logo" class="logo-img">
         <h1>Grafik Tabranij (GT)</h1>
         <div class="badge">TON JETTON UTILITY TOKEN</div>
-        <p>Portal Resmi Web Deployer & Minting GT Token (1 Miliar Supply) ke Dompet Anda.</p>
+        <p>Klik tombol di bawah untuk Deploy & Mint 1.000.000.000 GT Token langsung ke Dompet Anda dalam 1 kali Konfirmasi!</p>
 
         <div id="ton-connect-button"></div>
 
-        <button id="btn-deploy" class="btn" disabled>1. DEPLOY JETTON MASTER</button>
-        <button id="btn-mint" class="btn btn-mint" disabled>2. MINT 1.000.000.000 GT TO WALLET</button>
+        <button id="btn-action" class="btn" disabled>🚀 DEPLOY & MINT 1 BILLION GT</button>
 
         <div id="status"></div>
 
         <div class="info-box">
             <strong>📋 Target Contract Address:</strong><br>
-            <span id="contract-addr">EQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NQHg</span><br><br>
+            <span>UQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NVwl</span><br><br>
             <strong>👤 Admin Address:</strong><br>
-            <span id="admin-addr">EQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTUHT</span>
+            <span>EQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTUHT</span>
         </div>
     </div>
 
@@ -136,30 +136,35 @@
             buttonRootId: 'ton-connect-button'
         });
 
-        const btnDeploy = document.getElementById('btn-deploy');
-        const btnMint = document.getElementById('btn-mint');
+        const btnAction = document.getElementById('btn-action');
         const statusDiv = document.getElementById('status');
 
-        const contractAddress = "EQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NQHg";
+        // Non-bounceable contract address format for uninitialized stateInit deploy
+        const contractAddress = "UQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NVwl";
+
         const stateInitBase64 = "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";
+        
+        // Deploy Payload
+        const deployPayload = "te6cckEBAQEADgAAGJRqmLYAAAAAAAAAAOnNeQ0=";
+
+        // Mint Payload (1 Billion GT to Admin)
+        const mintPayload = "te6cckEBAQEAGwAANg502X8AAAAAAAAAAGq/gEAAEQE0BgcAGJRqmLY=";
 
         tonConnectUI.onStatusChange(wallet => {
             if (wallet) {
-                btnDeploy.disabled = false;
-                btnMint.disabled = false;
+                btnAction.disabled = false;
                 statusDiv.className = "success";
                 statusDiv.innerText = "✅ Wallet Terhubung: " + wallet.account.address.slice(0,6) + "..." + wallet.account.address.slice(-4);
             } else {
-                btnDeploy.disabled = true;
-                btnMint.disabled = true;
+                btnAction.disabled = true;
                 statusDiv.innerText = "";
             }
         });
 
-        btnDeploy.addEventListener('click', async () => {
+        btnAction.addEventListener('click', async () => {
             if (!tonConnectUI.connected) return;
             statusDiv.className = "pending";
-            statusDiv.innerText = "⏳ Membuka transaksi Deploy di Wallet...";
+            statusDiv.innerText = "⏳ Membuka transaksi Deploy & Mint di Wallet Anda...";
 
             const transaction = {
                 validUntil: Math.floor(Date.now() / 1000) + 600,
@@ -167,32 +172,13 @@
                     {
                         address: contractAddress,
                         amount: "150000000", // 0.15 TON
-                        stateInit: stateInitBase64
-                    }
-                ]
-            };
-
-            try {
-                const result = await tonConnectUI.sendTransaction(transaction);
-                statusDiv.className = "success";
-                statusDiv.innerText = "🎉 DEPLOY SUCCESSFUL! Sekarang klik tombol 2 untuk Mint 1 Miliar GT.";
-            } catch (e) {
-                statusDiv.className = "error";
-                statusDiv.innerText = "❌ Transaction error: " + (e.message || e);
-            }
-        });
-
-        btnMint.addEventListener('click', async () => {
-            if (!tonConnectUI.connected) return;
-            statusDiv.className = "pending";
-            statusDiv.innerText = "⏳ Membuka transaksi Mint 1 Miliar GT di Wallet...";
-
-            const transaction = {
-                validUntil: Math.floor(Date.now() / 1000) + 600,
-                messages: [
+                        stateInit: stateInitBase64,
+                        payload: deployPayload
+                    },
                     {
                         address: contractAddress,
-                        amount: "100000000" // 0.10 TON
+                        amount: "100000000", // 0.10 TON
+                        payload: mintPayload
                     }
                 ]
             };
@@ -200,10 +186,10 @@
             try {
                 const result = await tonConnectUI.sendTransaction(transaction);
                 statusDiv.className = "success";
-                statusDiv.innerText = "💎 MINTING SUCCESSFUL! 1 Miliar GT telah masuk ke Dompet Anda!";
+                statusDiv.innerText = "🎉 SUKSES SANGAT BESAR! 1 Miliar GT Token telah berhasil di-Deploy dan di-Mint langsung ke Dompet Anda!";
             } catch (e) {
                 statusDiv.className = "error";
-                statusDiv.innerText = "❌ Transaction error: " + (e.message || e);
+                statusDiv.innerText = "❌ Transaksi: " + (e.message || JSON.stringify(e));
             }
         });
     </script>
