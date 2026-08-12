@@ -1,4 +1,23 @@
-<!DOCTYPE html>
+const fs = require('fs');
+const { beginCell, Address, storeStateInit } = require('@ton/core');
+const { JettonMaster } = require('./build/JettonMaster/tact_JettonMaster');
+
+async function main() {
+    const adminAddress = Address.parse('EQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTUHT');
+    const metadataUrl = 'https://galrei.github.io/grafiktabranij/metadata/metadata.json';
+    const contentCell = beginCell().storeUint(1, 8).storeStringTail(metadataUrl).endCell();
+
+    const jettonMaster = await JettonMaster.fromInit(adminAddress, contentCell);
+    
+    // Standard bounceable address format
+    const contractAddress = jettonMaster.address.toString({ bounceable: true });
+    const stateInitCell = beginCell().store(storeStateInit(jettonMaster.init)).endCell();
+    const stateInitBase64 = stateInitCell.toBoc().toString('base64');
+    
+    const deployPayload = beginCell().storeUint(2490013878, 32).storeUint(0, 64).endCell().toBoc().toString('base64');
+    const mintPayload = beginCell().storeUint(4235234258, 32).storeCoins(1000000000000000000n).storeAddress(adminAddress).endCell().toBoc().toString('base64');
+
+    const htmlContent = `<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -126,9 +145,9 @@
 
         <div class="info-box">
             <strong>📋 Target Contract Address:</strong><br>
-            <span>EQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NQHg</span><br><br>
+            <span>${contractAddress}</span><br><br>
             <strong>👤 Admin Address:</strong><br>
-            <span>EQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTUHT</span>
+            <span>${adminAddress.toString()}</span>
         </div>
     </div>
 
@@ -142,10 +161,10 @@
         const btnMint = document.getElementById('btn-mint');
         const statusDiv = document.getElementById('status');
 
-        const contractAddress = "EQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NQHg";
-        const stateInitBase64 = "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";
-        const deployPayload = "te6cckEBAQEADgAAGJRqmLYAAAAAAAAAAOnNeQ0=";
-        const mintPayload = "te6cckEBAQEAMAAAW/xwi9KA3gtrOnZAAAgASvUPO9ceoZYUFq57kqYtPZZDLza6GMHHIbLlAmBCDpv8Z+N4";
+        const contractAddress = "${contractAddress}";
+        const stateInitBase64 = "${stateInitBase64}";
+        const deployPayload = "${deployPayload}";
+        const mintPayload = "${mintPayload}";
 
         tonConnectUI.onStatusChange(wallet => {
             if (wallet) {
@@ -214,4 +233,9 @@
         });
     </script>
 </body>
-</html>
+</html>`;
+
+    fs.writeFileSync('deploy.html', htmlContent);
+    console.log('✅ Updated deploy.html with bounceable address EQDmItwXvs6n7HGzFuJe-oXCRrLUvROTEnJUdO9tYB15NQHg!');
+}
+main().catch(console.error);
