@@ -2,7 +2,7 @@ import "@stdlib/deploy";
 import "./jetton_wallet.tact";
 
 // ============================================================================
-// TEP-74 Jetton Master Standard Contract (Tact 1.6+ Standard for TON)
+// TEP-74 Jetton Master Standard Contract (Tact Standard for TON)
 // Token: Grafik Tabranij (GT)
 // Supply: 1,000,000,000 GT (1 Billion) | Decimals: 9
 // ============================================================================
@@ -31,11 +31,11 @@ contract JettonMaster with Deployable {
     walletCode: Cell;
 
     init(adminAddress: Address, content: Cell) {
-        self.totalSupply = 1000000000000000000; // 1 Billion GT (with 9 decimals: 1,000,000,000 * 10^9)
-        self.mintable = false; // Fixed supply token
+        self.totalSupply = 0;
+        self.mintable = true; // Enabled for initial supply minting
         self.adminAddress = adminAddress;
         self.content = content;
-        self.walletCode = initCode JettonWallet(self.adminAddress, myAddress());
+        self.walletCode = (initOf JettonWallet(adminAddress, myAddress())).code;
     }
 
     receive(msg: Mint) {

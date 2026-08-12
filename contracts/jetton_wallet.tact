@@ -1,7 +1,7 @@
 import "@stdlib/deploy";
 
 // ============================================================================
-// TEP-74 Jetton Wallet Standard Contract (Tact 1.6+ Standard for TON)
+// TEP-74 Jetton Wallet Standard Contract (Tact Standard for TON)
 // Token: Grafik Tabranij (GT)
 // ============================================================================
 
@@ -88,6 +88,11 @@ contract JettonWallet with Deployable {
         let targetWalletInit: StateInit = initOf JettonWallet(msg.destination, self.master);
         let targetWalletAddress: Address = contractAddress(targetWalletInit);
 
+        let fwdPayload: Cell = emptyCell();
+        if (msg.customPayload != null) {
+            fwdPayload = msg.customPayload!!;
+        }
+
         send(SendParameters{
             to: targetWalletAddress,
             value: 0,
@@ -99,7 +104,7 @@ contract JettonWallet with Deployable {
                 from: self.owner,
                 responseAddress: msg.responseAddress,
                 forwardTonAmount: msg.forwardTonAmount,
-                forwardPayload: msg.forwardPayload ?? emptyCell()
+                forwardPayload: fwdPayload
             }.toCell(),
             code: targetWalletInit.code,
             data: targetWalletInit.data

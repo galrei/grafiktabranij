@@ -1,41 +1,55 @@
-import { Address, toNano, beginCell } from '@ton/ton';
-import { JettonMaster } from '../wrappers/JettonMaster';
-import { NetworkProvider } from '@ton/blueprint';
+import { toNano, beginCell } from "@ton/core";
+import { JettonMaster } from "../build/JettonMaster/tact_JettonMaster";
+import { NetworkProvider } from "@ton/blueprint";
 
 export async function run(provider: NetworkProvider) {
-    const adminAddress = provider.sender().address;
-    if (!adminAddress) {
-        throw new Error('Deployer wallet address not found');
-    }
+    const adminAddress = provider.sender().address!;
 
-    // TEP-64 Off-chain Metadata URI hosted on GitHub Pages
+    console.log("🚀 Deploying Grafik Tabranij (GT) Jetton Token...");
+    console.log("👤 Admin Address:", adminAddress.toString());
+
+    // TEP-64 Off-chain Metadata URI
     const metadataUrl = "https://galrei.github.io/grafiktabranij/metadata/metadata.json";
-    
-    // Build Cell format for TEP-64 off-chain metadata uri (prefix 0x01)
     const contentCell = beginCell()
         .storeUint(0x01, 8)
         .storeStringTail(metadataUrl)
         .endCell();
 
-    const jettonMaster = provider.open(await JettonMaster.fromInit(adminAddress, contentCell));
+    const jettonMaster = provider.open(
+        await JettonMaster.fromInit(adminAddress, contentCell)
+    );
 
+    console.log("📋 Contract Address:", jettonMaster.address.toString());
+    console.log("📜 Metadata URL:", metadataUrl);
+
+    // Step 1: Deploy Contract
     await jettonMaster.send(
         provider.sender(),
+        { value: toNano("0.15") },
         {
-            value: toNano('0.15'),
-        },
-        {
-            $$type: 'Deploy',
+            $$type: "Deploy",
             queryId: 0n,
         }
     );
 
     await provider.waitForDeploy(jettonMaster.address);
 
-    console.log('----------------------------------------------------');
-    console.log('✅ Jetton Master (GT Token) successfully deployed!');
-    console.log('Contract Address:', jettonMaster.address.toString());
-    console.log('Metadata URL:', metadataUrl);
-    console.log('Total Supply: 1,000,000,000 GT (9 Decimals)');
-    console.log('----------------------------------------------------');
+    // Step 2: Mint 1,000,000,000 GT to admin wallet
+    console.log("🪙 Minting 1,000,000,000 GT to admin wallet...");
+    await jettonMaster.send(
+        provider.sender(),
+        { value: toNano("0.1") },
+        {
+            $$type: "Mint",
+            amount: 1000000000000000000n, // 1 Billion GT (9 decimals)
+            receiver: adminAddress,
+        }
+    );
+
+    console.log("----------------------------------------------------");
+    console.log("✅ Grafik Tabranij (GT) Token successfully deployed & minted!");
+    console.log("📋 Contract Address:", jettonMaster.address.toString());
+    console.log("💎 Total Supply: 1,000,000,000 GT (Minted to Admin)");
+    console.log("🔗 View on Tonviewer: https://tonviewer.com/" + jettonMaster.address.toString());
+    console.log("----------------------------------------------------");
 }
