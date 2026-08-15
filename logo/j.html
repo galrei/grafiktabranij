@@ -23,15 +23,15 @@
 
     .container {
       position: relative;
-      width: 700px;
-      height: 700px;
+      width: 720px;
+      height: 720px;
     }
 
     /* Crystal */
     .crystal {
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: 48%;
       transform: translate(-50%, -50%);
       width: 220px;
       height: 340px;
@@ -62,21 +62,21 @@
     }
 
     /* Positions */
-    .t-tinggi { top: 95px; left: 420px; }
-    .a-atas   { top: 155px; left: 420px; }
-    .i-inti   { top: 215px; left: 480px; }
-    .b-bawah  { top: 430px; left: 420px; }
-    .r-rendah { top: 490px; left: 420px; }
+    .t-tinggi { top: 85px;  left: 430px; }
+    .a-atas   { top: 145px; left: 430px; }
+    .i-inti   { top: 205px; left: 490px; }
+    .b-bawah  { top: 420px; left: 430px; }
+    .r-rendah { top: 500px; left: 430px; }
 
     .a-awal {
-      top: 380px;
-      left: 40px;
+      top: 370px;
+      left: 35px;
     }
 
     .julat {
       position: absolute;
-      left: 30px;
-      top: 200px;
+      left: 18px;
+      top: 250px;
       color: white;
       font-size: 22px;
       font-weight: 700;
@@ -84,13 +84,6 @@
       writing-mode: vertical-rl;
       transform: rotate(180deg);
       text-shadow: 0 0 10px rgba(100, 180, 255, 0.7);
-    }
-
-    /* Lines & dots */
-    .line {
-      position: absolute;
-      background: linear-gradient(90deg, transparent, #4fc3f7, transparent);
-      height: 2px;
     }
 
     .dot {
@@ -106,7 +99,7 @@
 
     .title {
       position: absolute;
-      bottom: 40px;
+      bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(90deg, #1a237e, #0d47a1);
@@ -117,15 +110,6 @@
       font-weight: 700;
       letter-spacing: 4px;
       box-shadow: 0 0 20px rgba(30, 100, 255, 0.5);
-    }
-
-    /* Bracket for JULAT */
-    .bracket {
-      position: absolute;
-      left: 95px;
-      top: 130px;
-      width: 40px;
-      height: 340px;
     }
   </style>
 </head>
@@ -141,11 +125,6 @@
             <stop offset="30%" stop-color="#4a9eff"/>
             <stop offset="60%" stop-color="#2a6aff"/>
             <stop offset="100%" stop-color="#1a3a8f"/>
-          </linearGradient>
-          <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.6)"/>
-            <stop offset="50%" stop-color="rgba(255,255,255,0.1)"/>
-            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
           </linearGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="3" result="blur"/>
@@ -186,53 +165,48 @@
       </svg>
     </div>
 
-    <!-- Bracket JULAT -->
-    <svg class="bracket" viewBox="0 0 50 340">
-      <path d="M40 10 
-               Q10 10 10 40 
-               L10 300 
-               Q10 330 40 330" 
+    <!-- ===== BRACKET JULAT (lebih panjang) ===== -->
+    <svg style="position:absolute; left:85px; top:70px; width:55px; height:460px;" viewBox="0 0 55 460">
+      <path d="M45 8 
+               Q8 8 8 45 
+               L8 415 
+               Q8 452 45 452" 
             fill="none" 
             stroke="#4fc3f7" 
-            stroke-width="4"
+            stroke-width="5"
             stroke-linecap="round"/>
     </svg>
 
     <div class="julat">JULAT</div>
 
     <!-- Labels -->
-    <div class="label t-tinggi">
-      <span class="letter">T</span> TINGGI
-    </div>
-    <div class="label a-atas">
-      <span class="letter">A</span> ATAS
-    </div>
-    <div class="label i-inti">
-      <span class="letter">I</span> INTI
-    </div>
-    <div class="label b-bawah">
-      <span class="letter">B</span> BAWAH
-    </div>
-    <div class="label r-rendah">
-      <span class="letter">R</span> RENDAH
-    </div>
-
-    <div class="label a-awal">
-      <span class="letter">A</span> AWAL
-    </div>
+    <div class="label t-tinggi"><span class="letter">T</span> TINGGI</div>
+    <div class="label a-atas"><span class="letter">A</span> ATAS</div>
+    <div class="label i-inti"><span class="letter">I</span> INTI</div>
+    <div class="label b-bawah"><span class="letter">B</span> BAWAH</div>
+    <div class="label r-rendah"><span class="letter">R</span> RENDAH</div>
+    <div class="label a-awal"><span class="letter">A</span> AWAL</div>
 
     <!-- Dots -->
-    <div class="dot blue" style="top: 108px; left: 400px;"></div>
-    <div class="dot red"  style="top: 505px; left: 400px;"></div>
+    <div class="dot blue" style="top:98px; left:410px;"></div>
+    <div class="dot red"  style="top:515px; left:410px;"></div>
 
-    <!-- Connecting lines -->
-    <div style="position:absolute; top:114px; left:350px; width:50px; height:2px; background:#4fc3f7;"></div>
-    <div style="position:absolute; top:225px; left:380px; width:90px; height:2px; background:linear-gradient(90deg,#4fc3f7,transparent); border-top:2px dashed #4fc3f7;"></div>
-    <div style="position:absolute; top:390px; left:140px; width:100px; height:2px; background:linear-gradient(90deg,transparent,#4fc3f7); border-top:2px dashed #4fc3f7;"></div>
-    <div style="position:absolute; top:511px; left:350px; width:50px; height:2px; background:#ff5252;"></div>
+    <!-- Garis penghubung biru atas -->
+    <div style="position:absolute; top:104px; left:355px; width:55px; height:2px; background:#4fc3f7;"></div>
 
-    <!-- Vertical line through crystal -->
-    <div style="position:absolute; top:110px; left:349px; width:2px; height:400px; background:linear-gradient(to bottom, #4fc3f7, transparent, #ff5252);"></div>
+    <!-- Garis putus-putus INTI -->
+    <div style="position:absolute; top:215px; left:385px; width:95px; height:0; border-top:2px dashed #4fc3f7;"></div>
+
+    <!-- Garis putus-putus AWAL -->
+    <div style="position:absolute; top:380px; left:135px; width:110px; height:0; border-top:2px dashed #4fc3f7;"></div>
+
+    <!-- ===== GARIS MERAH BAWAH (lebih panjang) ===== -->
+    <div style="position:absolute; top:521px; left:300px; width:110px; height:2px; background:#ff5252;"></div>
+
+    <!-- Garis vertikal utama -->
+    <div style="position:absolute; top:100px; left:359px; width:2px; height:425px; 
+                background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 40%, transparent 50%, #ff5252 60%, #ff5252 100%);">
+    </div>
 
     <div class="title">TABRANIJ</div>
   </div>
