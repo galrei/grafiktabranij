@@ -3,250 +3,264 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N NILAI</title>
+  <title>N NETO - Canvas Version</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       min-height: 100vh;
-      background: #0a0f1a;
+      background: #02040a;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', system-ui, sans-serif;
       overflow: hidden;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
-
-    /* grid background */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(100, 140, 200, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100, 140, 200, 0.08) 1px, transparent 1px);
-      background-size: 50px 50px;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
-      pointer-events: none;
-    }
-
-    .container {
-      position: relative;
-      width: 420px;
-      height: 520px;
-    }
-
-    /* Green bar */
-    .bar {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 110px;
-      height: 220px;
-      background: linear-gradient(180deg, #2ee6a0, #1fc48a);
-      border-radius: 28px;
-      box-shadow: 
-        0 0 40px rgba(46, 230, 160, 0.6),
-        0 0 80px rgba(46, 230, 160, 0.3),
-        inset 0 0 20px rgba(255, 255, 255, 0.25);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 5;
-    }
-
-    .bar .n {
-      font-size: 52px;
-      font-weight: 800;
-      color: white;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-      line-height: 1;
-    }
-
-    .bar .nilai {
-      font-size: 16px;
-      font-weight: 600;
-      color: white;
-      letter-spacing: 1px;
-      margin-top: 4px;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-    }
-
-    /* Labels */
-    .label {
-      position: absolute;
-      font-size: 15px;
-      font-weight: 600;
-      color: #a8c4e8;
-      white-space: nowrap;
-    }
-
-    /* Top */
-    .tinggi {
-      top: 55px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-    .tinggi .dot {
-      width: 12px;
-      height: 12px;
-      background: #4a9eff;
-      border-radius: 50%;
-      box-shadow: 0 0 12px #4a9eff;
-    }
-    .tinggi .line {
-      width: 2px;
-      height: 55px;
-      background: #6a9fd8;
-    }
-
-    .atas {
-      top: 95px;
-      left: 58%;
-    }
-
-    /* Right */
-    .inti {
-      top: 48%;
-      right: 30px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .inti .arrow {
-      width: 40px;
-      height: 2px;
-      background: repeating-linear-gradient(90deg, #6a9fd8 0 4px, transparent 4px 8px);
-      position: relative;
-    }
-    .inti .arrow::after {
-      content: "";
-      position: absolute;
-      right: -6px;
-      top: -4px;
-      border: 5px solid transparent;
-      border-left: 8px solid #6a9fd8;
-    }
-
-    /* Left */
-    .awal {
-      top: 62%;
-      left: 25px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #3dd68c;
-    }
-    .awal .arrow {
-      width: 40px;
-      height: 2px;
-      background: repeating-linear-gradient(90deg, #3dd68c 0 4px, transparent 4px 8px);
-      position: relative;
-    }
-    .awal .arrow::before {
-      content: "";
-      position: absolute;
-      left: -6px;
-      top: -4px;
-      border: 5px solid transparent;
-      border-right: 8px solid #3dd68c;
-    }
-
-    /* Bottom */
-    .bawah {
-      bottom: 95px;
-      left: 58%;
-    }
-
-    .rendah {
-      bottom: 55px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-    .rendah .line {
-      width: 2px;
-      height: 40px;
-      background: #6a9fd8;
-    }
-    .rendah .dot {
-      width: 12px;
-      height: 12px;
-      background: #ff5a6e;
-      border-radius: 50%;
-      box-shadow: 0 0 12px #ff5a6e;
-    }
-    .rendah span {
-      color: #ff7a8a;
-    }
-
-    /* Bottom button */
-    .tabrani {
-      position: absolute;
-      bottom: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #1a3a5c;
-      color: #4db8ff;
-      padding: 8px 28px;
-      border-radius: 20px;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 1px;
+    canvas {
+      max-width: 95vw;
+      max-height: 95vh;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Green bar -->
-    <div class="bar">
-      <div class="n">N</div>
-      <div class="nilai">NILAI</div>
-    </div>
+  <canvas id="c" width="500" height="620"></canvas>
 
-    <!-- Top -->
-    <div class="tinggi">
-      <div class="dot"></div>
-      <div class="line"></div>
-      <div class="label" style="margin-top: 4px;">T TINGGI</div>
-    </div>
-    <div class="label atas">A ATAS</div>
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
 
-    <!-- Right -->
-    <div class="inti">
-      <div class="arrow"></div>
-      <div class="label">I INTI</div>
-    </div>
+    // Background grid
+    function drawGrid() {
+      ctx.strokeStyle = 'rgba(70, 130, 255, 0.06)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < 500; x += 50) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 620); ctx.stroke();
+      }
+      for (let y = 0; y < 620; y += 50) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(500, y); ctx.stroke();
+      }
+    }
 
-    <!-- Left -->
-    <div class="awal">
-      <div class="label">A AWAL</div>
-      <div class="arrow"></div>
-    </div>
+    // Glow helper
+    function glow(color, blur) {
+      ctx.shadowColor = color;
+      ctx.shadowBlur = blur;
+    }
 
-    <!-- Bottom -->
-    <div class="label bawah">B BAWAH</div>
-    <div class="rendah">
-      <div class="line"></div>
-      <div class="dot"></div>
-      <span class="label">R RENDAH</span>
-    </div>
+    function resetGlow() {
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
+    }
 
-    <!-- Button -->
-    <div class="tabrani">TABRANI</div>
-  </div>
+    // Draw crystal
+    function drawCrystal() {
+      const cx = 250, top = 90, bottom = 470;
+
+      // Outer glow
+      glow('#00e5ff', 40);
+      ctx.beginPath();
+      ctx.moveTo(cx, top);
+      ctx.lineTo(305, 155);
+      ctx.lineTo(305, 390);
+      ctx.lineTo(cx, bottom);
+      ctx.lineTo(195, 390);
+      ctx.lineTo(195, 155);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(0, 180, 255, 0.15)';
+      ctx.fill();
+      resetGlow();
+
+      // Left face
+      ctx.beginPath();
+      ctx.moveTo(cx, top);
+      ctx.lineTo(195, 155);
+      ctx.lineTo(195, 390);
+      ctx.lineTo(cx, bottom);
+      ctx.closePath();
+      const leftGrad = ctx.createLinearGradient(195, 200, 250, 300);
+      leftGrad.addColorStop(0, 'rgba(0, 140, 220, 0.7)');
+      leftGrad.addColorStop(1, 'rgba(80, 40, 180, 0.6)');
+      ctx.fillStyle = leftGrad;
+      ctx.fill();
+
+      // Right face
+      ctx.beginPath();
+      ctx.moveTo(cx, top);
+      ctx.lineTo(305, 155);
+      ctx.lineTo(305, 390);
+      ctx.lineTo(cx, bottom);
+      ctx.closePath();
+      const rightGrad = ctx.createLinearGradient(250, 200, 305, 300);
+      rightGrad.addColorStop(0, 'rgba(40, 120, 255, 0.55)');
+      rightGrad.addColorStop(1, 'rgba(160, 50, 220, 0.5)');
+      ctx.fillStyle = rightGrad;
+      ctx.fill();
+
+      // Main front face
+      glow('#00f0ff', 18);
+      ctx.beginPath();
+      ctx.moveTo(cx, top);
+      ctx.lineTo(305, 155);
+      ctx.lineTo(305, 390);
+      ctx.lineTo(cx, bottom);
+      ctx.lineTo(195, 390);
+      ctx.lineTo(195, 155);
+      ctx.closePath();
+
+      const mainGrad = ctx.createLinearGradient(200, 100, 300, 450);
+      mainGrad.addColorStop(0, 'rgba(0, 242, 255, 0.9)');
+      mainGrad.addColorStop(0.3, 'rgba(60, 160, 255, 0.8)');
+      mainGrad.addColorStop(0.6, 'rgba(180, 60, 255, 0.85)');
+      mainGrad.addColorStop(1, 'rgba(255, 80, 200, 0.7)');
+      ctx.fillStyle = mainGrad;
+      ctx.fill();
+      resetGlow();
+
+      // Facet lines
+      ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(cx, top); ctx.lineTo(cx, bottom); ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(200,240,255,0.4)';
+      ctx.beginPath();
+      ctx.moveTo(195, 155); ctx.lineTo(305, 155); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(195, 390); ctx.lineTo(305, 390); ctx.stroke();
+
+      // Bright top edges
+      ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(cx, top); ctx.lineTo(305, 155); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(cx, top); ctx.lineTo(195, 155); ctx.stroke();
+
+      // Text N NETO
+      glow('#ffffff', 12);
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 48px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText('N', cx, 275);
+      ctx.font = 'bold 17px Segoe UI';
+      ctx.fillText('NETO', cx, 305);
+      resetGlow();
+    }
+
+    // Labels
+    function drawLabels() {
+      // JULAT brace
+      glow('#00e5ff', 15);
+      ctx.strokeStyle = '#00e5ff';
+      ctx.lineWidth = 5;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(85, 60);
+      ctx.quadraticCurveTo(55, 60, 55, 90);
+      ctx.lineTo(55, 440);
+      ctx.quadraticCurveTo(55, 470, 85, 470);
+      ctx.stroke();
+      resetGlow();
+
+      ctx.save();
+      ctx.translate(32, 270);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillStyle = '#00e5ff';
+      ctx.font = 'bold 19px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText('JULAT', 0, 0);
+      ctx.restore();
+
+      // T TINGGI
+      glow('#00b4ff', 10);
+      ctx.beginPath();
+      ctx.arc(250, 48, 7, 0, Math.PI * 2);
+      ctx.fillStyle = '#00b4ff';
+      ctx.fill();
+      resetGlow();
+      ctx.strokeStyle = '#7ec8ff';
+      ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      ctx.moveTo(250, 55); ctx.lineTo(250, 90); ctx.stroke();
+      ctx.fillStyle = '#c0e8ff';
+      ctx.font = '600 15px Segoe UI';
+      ctx.textAlign = 'left';
+      ctx.fillText('T TINGGI', 268, 55);
+
+      // A ATAS
+      ctx.fillStyle = '#c0e8ff';
+      ctx.fillText('A ATAS', 320, 140);
+
+      // I INTI
+      ctx.fillStyle = '#90e0ff';
+      ctx.fillText('I INTI', 345, 260);
+      ctx.strokeStyle = '#00e5ff';
+      ctx.lineWidth = 2.2;
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath();
+      ctx.moveTo(305, 267); ctx.lineTo(340, 267); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.moveTo(340, 262); ctx.lineTo(355, 267); ctx.lineTo(340, 272); ctx.closePath();
+      ctx.fillStyle = '#00e5ff';
+      ctx.fill();
+
+      // A AWAL
+      ctx.fillStyle = '#3ce090';
+      ctx.fillText('A AWAL', 55, 355);
+      ctx.strokeStyle = '#3ce090';
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath();
+      ctx.moveTo(140, 362); ctx.lineTo(195, 362); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.moveTo(140, 357); ctx.lineTo(125, 362); ctx.lineTo(140, 367); ctx.closePath();
+      ctx.fillStyle = '#3ce090';
+      ctx.fill();
+
+      // B BAWAH + R RENDAH
+      ctx.strokeStyle = '#7ec8ff';
+      ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      ctx.moveTo(250, 470); ctx.lineTo(250, 495); ctx.stroke();
+      glow('#ff3d60', 10);
+      ctx.beginPath();
+      ctx.arc(250, 505, 7, 0, Math.PI * 2);
+      ctx.fillStyle = '#ff3d60';
+      ctx.fill();
+      resetGlow();
+      ctx.fillStyle = '#c0e8ff';
+      ctx.fillText('B BAWAH', 268, 490);
+      ctx.fillStyle = '#ff6b8a';
+      ctx.fillText('R RENDAH', 268, 513);
+
+      // TABRANIJ button
+      ctx.fillStyle = 'rgba(0, 28, 65, 0.85)';
+      ctx.strokeStyle = '#00c4ff';
+      ctx.lineWidth = 2;
+      roundRect(160, 535, 180, 32, 16);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#00e5ff';
+      ctx.font = 'bold 15px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText('TABRANIJ', 250, 556);
+    }
+
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    // Draw everything
+    drawGrid();
+    drawCrystal();
+    drawLabels();
+  </script>
 </body>
 </html>
