@@ -22,7 +22,6 @@
       position: relative;
     }
 
-    /* soft light beams */
     body::before {
       content: "";
       position: absolute;
@@ -35,7 +34,6 @@
       pointer-events: none;
     }
 
-    /* mountain silhouette */
     .mountains {
       position: absolute;
       bottom: 0;
@@ -86,7 +84,6 @@
         0 30px 60px -15px rgba(0, 0, 0, 0.6);
     }
 
-    /* grid */
     .card::before {
       content: "";
       position: absolute;
@@ -99,7 +96,6 @@
       mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     }
 
-    /* diamond markers */
     .diamond {
       position: absolute;
       width: 8px;
@@ -131,7 +127,6 @@
       position: relative;
     }
 
-    /* glow behind icon */
     .icon-glow {
       position: absolute;
       width: 180px;
@@ -178,7 +173,6 @@
       box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
     }
 
-    /* ===== SVG Icons ===== */
     .icon-svg {
       width: 160px;
       height: 160px;
@@ -190,34 +184,26 @@
   <div class="mountains"></div>
 
   <div class="container">
-    <!-- CARD 1 -->
+    <!-- CARD 01 -->
     <div class="card">
       <div class="diamond tl"></div>
       <div class="diamond tr"></div>
       <div class="diamond bl"></div>
       <div class="diamond br"></div>
       <div class="number">01</div>
-      
       <div class="icon-area">
         <div class="icon-glow" style="background: radial-gradient(circle, #00b4ff, #a020f0);"></div>
         <svg class="icon-svg" viewBox="0 0 200 200" fill="none">
-          <!-- isometric glass cubes -->
           <g transform="translate(40,30)">
-            <!-- back cubes -->
             <path d="M40 20 L70 5 L100 20 L70 35 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5" opacity="0.9"/>
             <path d="M70 35 L100 20 L100 55 L70 70 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5" opacity="0.85"/>
             <path d="M40 20 L40 55 L70 70 L70 35 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5" opacity="0.8"/>
-            
-            <!-- middle row -->
             <path d="M10 50 L40 35 L70 50 L40 65 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5"/>
             <path d="M40 65 L70 50 L70 85 L40 100 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5"/>
             <path d="M10 50 L10 85 L40 100 L40 65 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5"/>
-            
             <path d="M70 50 L100 35 L130 50 L100 65 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5"/>
             <path d="M100 65 L130 50 L130 85 L100 100 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5"/>
             <path d="M70 50 L70 85 L100 100 L100 65 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5"/>
-            
-            <!-- front cubes -->
             <path d="M40 80 L70 65 L100 80 L70 95 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5"/>
             <path d="M70 95 L100 80 L100 115 L70 130 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5"/>
             <path d="M40 80 L40 115 L70 130 L70 95 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5"/>
@@ -238,38 +224,30 @@
           </defs>
         </svg>
       </div>
-      
       <div class="title">Strategy<br>First</div>
       <div class="arrow-btn">↗</div>
     </div>
 
-    <!-- CARD 2 -->
+    <!-- CARD 02 -->
     <div class="card">
       <div class="diamond tl"></div>
       <div class="diamond tr"></div>
       <div class="diamond bl"></div>
       <div class="diamond br"></div>
       <div class="number">02</div>
-      
       <div class="icon-area">
         <div class="icon-glow" style="background: radial-gradient(circle, #00e5ff, #c040ff);"></div>
         <svg class="icon-svg" viewBox="0 0 200 200" fill="none">
-          <!-- circular base -->
           <ellipse cx="100" cy="155" rx="55" ry="12" fill="url(#baseGrad)" opacity="0.9"/>
           <ellipse cx="100" cy="152" rx="48" ry="8" fill="none" stroke="#00e5ff" stroke-width="2" opacity="0.7"/>
           <ellipse cx="100" cy="149" rx="38" ry="5" fill="none" stroke="#a020f0" stroke-width="1.5" opacity="0.6"/>
-          
-          <!-- stem -->
           <path d="M100 150 Q102 110 100 75" stroke="url(#stemGrad)" stroke-width="5" stroke-linecap="round"/>
-          
-          <!-- leaves -->
           <path d="M100 95 Q70 70 55 95 Q75 100 100 95" fill="url(#leafGrad)" opacity="0.95"/>
           <path d="M100 90 Q130 60 145 90 Q125 95 100 90" fill="url(#leafGrad)" opacity="0.95"/>
           <path d="M100 75 Q80 50 70 75 Q85 80 100 75" fill="url(#leafGrad2)" opacity="0.9"/>
           <path d="M100 70 Q120 45 130 70 Q115 75 100 70" fill="url(#leafGrad2)" opacity="0.9"/>
           <path d="M100 110 Q75 95 65 115 Q80 120 100 110" fill="url(#leafGrad)" opacity="0.85"/>
           <path d="M100 105 Q125 90 135 110 Q120 115 100 105" fill="url(#leafGrad)" opacity="0.85"/>
-          
           <defs>
             <linearGradient id="baseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#00e5ff"/>
@@ -291,33 +269,40 @@
           </defs>
         </svg>
       </div>
-      
       <div class="title">Grow<br>Organically</div>
       <div class="arrow-btn">↗</div>
     </div>
 
-    <!-- CARD 3 -->
+    <!-- CARD 03 - PANAH SUDAH DIPERBAIKI PRESISI -->
     <div class="card">
       <div class="diamond tl"></div>
       <div class="diamond tr"></div>
       <div class="diamond bl"></div>
       <div class="diamond br"></div>
       <div class="number">03</div>
-      
       <div class="icon-area">
         <div class="icon-glow" style="background: radial-gradient(circle, #ff2a6d, #00e5ff);"></div>
         <svg class="icon-svg" viewBox="0 0 200 200" fill="none">
-          <!-- target rings -->
-          <circle cx="95" cy="105" r="55" fill="none" stroke="#ff2a6d" stroke-width="5" opacity="0.9"/>
-          <circle cx="95" cy="105" r="42" fill="none" stroke="#00e5ff" stroke-width="4.5" opacity="0.9"/>
-          <circle cx="95" cy="105" r="28" fill="none" stroke="#c040ff" stroke-width="4" opacity="0.85"/>
-          <circle cx="95" cy="105" r="14" fill="url(#centerGrad)"/>
+          <!-- Target rings -->
+          <circle cx="92" cy="108" r="58" fill="none" stroke="#ff2a6d" stroke-width="5.5" opacity="0.95"/>
+          <circle cx="92" cy="108" r="44" fill="none" stroke="#00e5ff" stroke-width="4.5" opacity="0.9"/>
+          <circle cx="92" cy="108" r="29" fill="none" stroke="#c040ff" stroke-width="4" opacity="0.85"/>
+          <circle cx="92" cy="108" r="14" fill="url(#centerGrad)"/>
           
-          <!-- arrow -->
-          <g transform="translate(95,105) rotate(-28)">
-            <rect x="5" y="-4" width="75" height="8" rx="4" fill="url(#arrowGrad)"/>
-            <path d="M80 -10 L100 0 L80 10 Z" fill="#ff2a6d"/>
-            <path d="M-5 -6 L5 0 L-5 6 Z" fill="#00e5ff" opacity="0.8"/>
+          <!-- PANAH PRESISI (ujung tepat di pusat, sudut & bentuk mirip asli) -->
+          <g transform="translate(92,108) rotate(-32)">
+            <!-- Batang panah -->
+            <rect x="8" y="-3.5" width="78" height="7" rx="3.5" fill="url(#arrowShaft)"/>
+            
+            <!-- Ujung panah (tajam) -->
+            <path d="M86 -9 L110 0 L86 9 Z" fill="#ff2a6d"/>
+            <path d="M86 -6 L102 0 L86 6 Z" fill="#ff60a0" opacity="0.9"/>
+            
+            <!-- Fletching / bulu belakang (lebih mirip asli) -->
+            <path d="M8 -8 L-6 -14 L8 -3.5 Z" fill="#00e5ff" opacity="0.9"/>
+            <path d="M8 8 L-6 14 L8 3.5 Z" fill="#00e5ff" opacity="0.9"/>
+            <path d="M8 -5 L-2 -9 L8 -1 Z" fill="#80f0ff" opacity="0.7"/>
+            <path d="M8 5 L-2 9 L8 1 Z" fill="#80f0ff" opacity="0.7"/>
           </g>
           
           <defs>
@@ -325,14 +310,14 @@
               <stop offset="0%" stop-color="#ff60a0"/>
               <stop offset="100%" stop-color="#a020f0"/>
             </radialGradient>
-            <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id="arrowShaft" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#00e5ff"/>
+              <stop offset="70%" stop-color="#80c0ff"/>
               <stop offset="100%" stop-color="#ff2a6d"/>
             </linearGradient>
           </defs>
         </svg>
       </div>
-      
       <div class="title">Impact That<br>Connects</div>
       <div class="arrow-btn">↗</div>
     </div>
