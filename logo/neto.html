@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N NETO - Kristal</title>
+  <title>N NETO - Pure Code</title>
   <style>
     * {
       margin: 0;
@@ -13,7 +13,7 @@
 
     body {
       min-height: 100vh;
-      background: #030712;
+      background: #02040a;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -21,162 +21,193 @@
       overflow: hidden;
     }
 
-    /* soft grid background */
+    /* grid background */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
       background-image: 
-        linear-gradient(rgba(80, 140, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(80, 140, 255, 0.06) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+        linear-gradient(rgba(70, 130, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(70, 130, 255, 0.05) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: radial-gradient(ellipse at center, black 25%, transparent 70%);
       pointer-events: none;
     }
 
-    .container {
+    .stage {
+      width: 460px;
+      height: 560px;
       position: relative;
-      width: 480px;
-      height: 580px;
     }
 
     svg {
       width: 100%;
       height: 100%;
-      filter: drop-shadow(0 0 25px rgba(0, 180, 255, 0.35));
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <svg viewBox="0 0 480 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="stage">
+    <svg viewBox="0 0 460 560" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- Crystal gradient -->
-        <linearGradient id="crystal" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.95"/>
-          <stop offset="30%" stop-color="#40b0ff" stop-opacity="0.8"/>
-          <stop offset="60%" stop-color="#b040ff" stop-opacity="0.85"/>
-          <stop offset="100%" stop-color="#ff50c0" stop-opacity="0.7"/>
+        <!-- Main crystal body -->
+        <linearGradient id="mainGrad" x1="15%" y1="0%" x2="85%" y2="100%">
+          <stop offset="0%" stop-color="#00f2ff" stop-opacity="0.95"/>
+          <stop offset="25%" stop-color="#3aa0ff" stop-opacity="0.82"/>
+          <stop offset="55%" stop-color="#b03fff" stop-opacity="0.88"/>
+          <stop offset="80%" stop-color="#ff4ec8" stop-opacity="0.75"/>
+          <stop offset="100%" stop-color="#ff7ae0" stop-opacity="0.6"/>
         </linearGradient>
 
-        <linearGradient id="edge" x1="0%" y1="0%" x2="0%" y2="100%">
+        <!-- Side face darker -->
+        <linearGradient id="sideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#0088cc" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#6b1fff" stop-opacity="0.55"/>
+        </linearGradient>
+
+        <!-- Bright edge -->
+        <linearGradient id="bright" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-          <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.25"/>
+          <stop offset="40%" stop-color="#a0f0ff" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#00c8ff" stop-opacity="0.15"/>
         </linearGradient>
 
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
+        <!-- Strong glow -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
           <feMerge>
-            <feMergeNode in="blur"/>
+            <feMergeNode in="coloredBlur"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
 
-        <filter id="softGlow">
-          <feGaussianBlur stdDeviation="6" result="blur"/>
+        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="7" result="b"/>
           <feMerge>
-            <feMergeNode in="blur"/>
+            <feMergeNode in="b"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
       </defs>
 
-      <!-- ========== JULAT BRACE ========== -->
-      <path d="M95 70 
-               Q70 70 70 95 
-               L70 460 
-               Q70 485 95 485" 
+      <!-- ========== JULAT ========== -->
+      <path d="M88 55 
+               C68 55 62 70 62 90 
+               L62 445 
+               C62 465 68 480 88 480" 
             stroke="#00e5ff" 
-            stroke-width="5" 
+            stroke-width="5.5" 
             fill="none" 
             stroke-linecap="round"
-            filter="url(#softGlow)"/>
-      
-      <text x="42" y="285" 
+            filter="url(#soft)"/>
+
+      <text x="38" y="275" 
             fill="#00e5ff" 
-            font-size="22" 
+            font-size="20" 
             font-weight="700" 
-            letter-spacing="2"
-            transform="rotate(-90 42 285)" 
+            letter-spacing="1.5"
+            transform="rotate(-90 38 275)" 
             text-anchor="middle">JULAT</text>
 
-      <!-- ========== CRYSTAL ========== -->
-      <!-- Main body -->
-      <path d="M240 95 
-               L290 155 
-               L290 380 
-               L240 460 
-               L190 380 
-               L190 155 Z" 
-            fill="url(#crystal)" 
-            stroke="#a0f0ff" 
-            stroke-width="2.5"
+      <!-- ========== CRYSTAL BODY ========== -->
+      <!-- Left side face -->
+      <path d="M230 85 
+               L185 145 
+               L185 385 
+               L230 460 
+               L230 85" 
+            fill="url(#sideGrad)" 
+            opacity="0.75"/>
+
+      <!-- Right side face -->
+      <path d="M230 85 
+               L275 145 
+               L275 385 
+               L230 460 
+               L230 85" 
+            fill="url(#sideGrad)" 
+            opacity="0.55"/>
+
+      <!-- Main front face -->
+      <path d="M230 85 
+               L275 145 
+               L275 385 
+               L230 460 
+               L185 385 
+               L185 145 Z" 
+            fill="url(#mainGrad)" 
+            stroke="#b0f0ff" 
+            stroke-width="2"
             filter="url(#glow)"
-            opacity="0.95"/>
+            opacity="0.92"/>
 
-      <!-- Facet lines -->
-      <path d="M240 95 L240 460" stroke="#ffffff" stroke-width="1.8" opacity="0.55"/>
-      <path d="M190 155 L290 155" stroke="#c0f0ff" stroke-width="1.5" opacity="0.5"/>
-      <path d="M190 380 L290 380" stroke="#e080ff" stroke-width="1.5" opacity="0.5"/>
-      <path d="M210 200 L270 200" stroke="#ffffff" stroke-width="1.1" opacity="0.35"/>
-      <path d="M210 320 L270 320" stroke="#ffffff" stroke-width="1.1" opacity="0.35"/>
-      <path d="M215 255 L265 255" stroke="#ffffff" stroke-width="0.9" opacity="0.25"/>
+      <!-- Internal facet lines -->
+      <path d="M230 85 L230 460" stroke="#ffffff" stroke-width="1.6" opacity="0.5"/>
+      <path d="M185 145 L275 145" stroke="#d0f8ff" stroke-width="1.4" opacity="0.45"/>
+      <path d="M185 385 L275 385" stroke="#e090ff" stroke-width="1.4" opacity="0.45"/>
+      <path d="M200 200 L260 200" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+      <path d="M200 320 L260 320" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+      <path d="M205 255 L255 255" stroke="#ffffff" stroke-width="0.8" opacity="0.22"/>
 
-      <!-- Bright edges -->
-      <path d="M240 95 L290 155 L290 220" stroke="url(#edge)" stroke-width="2.2" fill="none" opacity="0.8"/>
-      <path d="M240 95 L190 155 L190 220" stroke="url(#edge)" stroke-width="2.2" fill="none" opacity="0.8"/>
+      <!-- Top bright edges -->
+      <path d="M230 85 L275 145" stroke="url(#bright)" stroke-width="2.8" fill="none" opacity="0.85"/>
+      <path d="M230 85 L185 145" stroke="url(#bright)" stroke-width="2.8" fill="none" opacity="0.85"/>
 
-      <!-- Text inside crystal -->
-      <text x="240" y="270" 
+      <!-- Bottom edges -->
+      <path d="M230 460 L275 385" stroke="#ff80d0" stroke-width="1.8" opacity="0.5"/>
+      <path d="M230 460 L185 385" stroke="#ff80d0" stroke-width="1.8" opacity="0.5"/>
+
+      <!-- Text N NETO -->
+      <text x="230" y="268" 
             text-anchor="middle" 
-            fill="white" 
-            font-size="48" 
+            fill="#ffffff" 
+            font-size="46" 
             font-weight="800"
             filter="url(#glow)">N</text>
-      <text x="240" y="300" 
+      <text x="230" y="298" 
             text-anchor="middle" 
-            fill="white" 
-            font-size="18" 
+            fill="#ffffff" 
+            font-size="17" 
             font-weight="700" 
-            letter-spacing="3">NETO</text>
+            letter-spacing="2.5">NETO</text>
 
       <!-- ========== LABELS ========== -->
 
       <!-- T TINGGI -->
-      <circle cx="240" cy="55" r="8" fill="#00b4ff" filter="url(#glow)"/>
-      <line x1="240" y1="63" x2="240" y2="95" stroke="#80d0ff" stroke-width="3"/>
-      <text x="260" y="62" fill="#b0e0ff" font-size="16" font-weight="600">T TINGGI</text>
+      <circle cx="230" cy="48" r="7.5" fill="#00b4ff" filter="url(#glow)"/>
+      <line x1="230" y1="55.5" x2="230" y2="85" stroke="#7ec8ff" stroke-width="2.8"/>
+      <text x="250" y="55" fill="#c0e8ff" font-size="15" font-weight="600">T TINGGI</text>
 
       <!-- A ATAS -->
-      <text x="305" y="145" fill="#b0e0ff" font-size="16" font-weight="500">A ATAS</text>
+      <text x="290" y="135" fill="#c0e8ff" font-size="15" font-weight="500">A ATAS</text>
 
       <!-- I INTI -->
-      <text x="340" y="265" fill="#80e0ff" font-size="16" font-weight="600">I INTI</text>
-      <line x1="290" y1="272" x2="325" y2="272" 
-            stroke="#00e5ff" stroke-width="2.2" stroke-dasharray="6 4"/>
-      <polygon points="325,267 338,272 325,277" fill="#00e5ff"/>
+      <text x="325" y="255" fill="#90e0ff" font-size="15" font-weight="600">I INTI</text>
+      <line x1="275" y1="262" x2="315" y2="262" 
+            stroke="#00e5ff" stroke-width="2.2" stroke-dasharray="5 4"/>
+      <polygon points="315,257 328,262 315,267" fill="#00e5ff"/>
 
       <!-- A AWAL -->
-      <text x="70" y="360" fill="#40e090" font-size="16" font-weight="600">A AWAL</text>
-      <line x1="145" y1="367" x2="190" y2="367" 
-            stroke="#40e090" stroke-width="2.2" stroke-dasharray="6 4"/>
-      <polygon points="145,362 133,367 145,372" fill="#40e090"/>
+      <text x="55" y="350" fill="#3ce090" font-size="15" font-weight="600">A AWAL</text>
+      <line x1="130" y1="357" x2="185" y2="357" 
+            stroke="#3ce090" stroke-width="2.2" stroke-dasharray="5 4"/>
+      <polygon points="130,352 118,357 130,362" fill="#3ce090"/>
 
       <!-- B BAWAH + R RENDAH -->
-      <line x1="240" y1="460" x2="240" y2="490" stroke="#80d0ff" stroke-width="3"/>
-      <circle cx="240" cy="500" r="8" fill="#ff4060" filter="url(#glow)"/>
-      <text x="260" y="485" fill="#b0e0ff" font-size="16" font-weight="500">B BAWAH</text>
-      <text x="260" y="508" fill="#ff6080" font-size="16" font-weight="600">R RENDAH</text>
+      <line x1="230" y1="460" x2="230" y2="490" stroke="#7ec8ff" stroke-width="2.8"/>
+      <circle cx="230" cy="500" r="7.5" fill="#ff3d60" filter="url(#glow)"/>
+      <text x="250" y="485" fill="#c0e8ff" font-size="15" font-weight="500">B BAWAH</text>
+      <text x="250" y="508" fill="#ff6b8a" font-size="15" font-weight="600">R RENDAH</text>
 
-      <!-- TABRANIJ button -->
-      <rect x="155" y="530" width="170" height="32" rx="16" 
-            fill="rgba(0,25,60,0.75)" 
-            stroke="#00c8ff" 
+      <!-- TABRANIJ -->
+      <rect x="145" y="525" width="170" height="30" rx="15" 
+            fill="rgba(0, 28, 65, 0.8)" 
+            stroke="#00c4ff" 
             stroke-width="2"/>
-      <text x="240" y="552" 
+      <text x="230" y="546" 
             text-anchor="middle" 
             fill="#00e5ff" 
-            font-size="16" 
+            font-size="15" 
             font-weight="700" 
             letter-spacing="2">TABRANIJ</text>
     </svg>
