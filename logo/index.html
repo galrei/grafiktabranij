@@ -174,9 +174,9 @@
     }
 
     .icon-svg {
-      width: 160px;
-      height: 160px;
-      filter: drop-shadow(0 0 12px rgba(0, 200, 255, 0.5));
+      width: 200px;
+      height: 220px;
+      filter: drop-shadow(0 0 15px rgba(0, 200, 255, 0.5));
     }
   </style>
 </head>
@@ -184,51 +184,103 @@
   <div class="mountains"></div>
 
   <div class="container">
-    <!-- CARD 01 -->
+    <!-- CARD 01 - KRISTAL N NETO (SUDAH DIGANTI) -->
     <div class="card">
       <div class="diamond tl"></div>
       <div class="diamond tr"></div>
       <div class="diamond bl"></div>
       <div class="diamond br"></div>
       <div class="number">01</div>
+      
       <div class="icon-area">
         <div class="icon-glow" style="background: radial-gradient(circle, #00b4ff, #a020f0);"></div>
-        <svg class="icon-svg" viewBox="0 0 200 200" fill="none">
-          <g transform="translate(40,30)">
-            <path d="M40 20 L70 5 L100 20 L70 35 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5" opacity="0.9"/>
-            <path d="M70 35 L100 20 L100 55 L70 70 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5" opacity="0.85"/>
-            <path d="M40 20 L40 55 L70 70 L70 35 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5" opacity="0.8"/>
-            <path d="M10 50 L40 35 L70 50 L40 65 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5"/>
-            <path d="M40 65 L70 50 L70 85 L40 100 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5"/>
-            <path d="M10 50 L10 85 L40 100 L40 65 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5"/>
-            <path d="M70 50 L100 35 L130 50 L100 65 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5"/>
-            <path d="M100 65 L130 50 L130 85 L100 100 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5"/>
-            <path d="M70 50 L70 85 L100 100 L100 65 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5"/>
-            <path d="M40 80 L70 65 L100 80 L70 95 Z" fill="url(#g1)" stroke="#80e0ff" stroke-width="1.5"/>
-            <path d="M70 95 L100 80 L100 115 L70 130 Z" fill="url(#g2)" stroke="#c060ff" stroke-width="1.5"/>
-            <path d="M40 80 L40 115 L70 130 L70 95 Z" fill="url(#g3)" stroke="#60d0ff" stroke-width="1.5"/>
-          </g>
+        
+        <!-- SVG KRISTAL N NETO + JULAT + TABRANIJ -->
+        <svg class="icon-svg" viewBox="0 0 280 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- JULAT brace -->
+          <path d="M55 40 Q40 40 40 55 L40 250 Q40 265 55 265" 
+                stroke="#00e5ff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <text x="18" y="160" fill="#00e5ff" font-size="16" font-weight="600" 
+                transform="rotate(-90 18 160)" text-anchor="middle">JULAT</text>
+
+          <!-- Crystal body (faceted glass) -->
           <defs>
-            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.7"/>
-              <stop offset="100%" stop-color="#a020f0" stop-opacity="0.4"/>
+            <linearGradient id="crystalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.85"/>
+              <stop offset="40%" stop-color="#80c0ff" stop-opacity="0.7"/>
+              <stop offset="70%" stop-color="#c040ff" stop-opacity="0.75"/>
+              <stop offset="100%" stop-color="#ff60d0" stop-opacity="0.6"/>
             </linearGradient>
-            <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#60d0ff" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#ff40c0" stop-opacity="0.6"/>
+            <linearGradient id="crystalEdge" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.4"/>
             </linearGradient>
-            <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#0080ff" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#c040ff" stop-opacity="0.5"/>
-            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
           </defs>
+
+          <!-- Main crystal shape -->
+          <path d="M140 55 L175 85 L175 215 L140 255 L105 215 L105 85 Z" 
+                fill="url(#crystalGrad)" stroke="#80e0ff" stroke-width="2" 
+                filter="url(#glow)" opacity="0.95"/>
+          
+          <!-- Facet lines -->
+          <path d="M140 55 L140 255" stroke="#ffffff" stroke-width="1.2" opacity="0.5"/>
+          <path d="M105 85 L175 85" stroke="#a0f0ff" stroke-width="1" opacity="0.4"/>
+          <path d="M105 215 L175 215" stroke="#c080ff" stroke-width="1" opacity="0.4"/>
+          <path d="M120 100 L160 100" stroke="#ffffff" stroke-width="0.8" opacity="0.3"/>
+          <path d="M120 200 L160 200" stroke="#ffffff" stroke-width="0.8" opacity="0.3"/>
+
+          <!-- Central text -->
+          <text x="140" y="155" text-anchor="middle" fill="white" font-size="32" 
+                font-weight="700" filter="url(#glow)">N</text>
+          <text x="140" y="180" text-anchor="middle" fill="white" font-size="15" 
+                font-weight="600" letter-spacing="1">NETO</text>
+
+          <!-- Top: T TINGGI -->
+          <circle cx="140" cy="35" r="6" fill="#00b4ff"/>
+          <line x1="140" y1="41" x2="140" y2="55" stroke="#80c0ff" stroke-width="2"/>
+          <text x="155" y="40" fill="#a0d0ff" font-size="13" font-weight="600">T TINGGI</text>
+
+          <!-- A ATAS -->
+          <text x="175" y="75" fill="#a0d0ff" font-size="13" font-weight="500">A ATAS</text>
+
+          <!-- I INTI (right) -->
+          <text x="200" y="140" fill="#80e0ff" font-size="13" font-weight="600">I INTI</text>
+          <line x1="175" y1="145" x2="195" y2="145" stroke="#00e5ff" stroke-width="1.5" 
+                stroke-dasharray="4 3"/>
+          <polygon points="195,141 203,145 195,149" fill="#00e5ff"/>
+
+          <!-- A AWAL (left) -->
+          <text x="55" y="200" fill="#40e080" font-size="13" font-weight="600">A AWAL</text>
+          <line x1="95" y1="205" x2="105" y2="205" stroke="#40e080" stroke-width="1.5" 
+                stroke-dasharray="4 3"/>
+          <polygon points="95,201 87,205 95,209" fill="#40e080"/>
+
+          <!-- Bottom: B BAWAH + R RENDAH -->
+          <line x1="140" y1="255" x2="140" y2="275" stroke="#80c0ff" stroke-width="2"/>
+          <circle cx="140" cy="282" r="6" fill="#ff4060"/>
+          <text x="155" y="270" fill="#a0d0ff" font-size="13" font-weight="500">B BAWAH</text>
+          <text x="155" y="288" fill="#ff6080" font-size="13" font-weight="600">R RENDAH</text>
+
+          <!-- TABRANIJ button -->
+          <rect x="85" y="295" width="110" height="22" rx="11" 
+                fill="rgba(0,40,80,0.6)" stroke="#00b4ff" stroke-width="1.5"/>
+          <text x="140" y="310" text-anchor="middle" fill="#00e5ff" 
+                font-size="13" font-weight="700" letter-spacing="1">TABRANIJ</text>
         </svg>
       </div>
+      
       <div class="title">Strategy<br>First</div>
       <div class="arrow-btn">↗</div>
     </div>
 
-    <!-- CARD 02 -->
+    <!-- CARD 02 - Grow Organically (tetap sama) -->
     <div class="card">
       <div class="diamond tl"></div>
       <div class="diamond tr"></div>
@@ -273,7 +325,7 @@
       <div class="arrow-btn">↗</div>
     </div>
 
-    <!-- CARD 03 - PANAH SUDAH DIPERBAIKI PRESISI -->
+    <!-- CARD 03 - Impact That Connects (tetap sama) -->
     <div class="card">
       <div class="diamond tl"></div>
       <div class="diamond tr"></div>
@@ -283,22 +335,15 @@
       <div class="icon-area">
         <div class="icon-glow" style="background: radial-gradient(circle, #ff2a6d, #00e5ff);"></div>
         <svg class="icon-svg" viewBox="0 0 200 200" fill="none">
-          <!-- Target rings -->
           <circle cx="92" cy="108" r="58" fill="none" stroke="#ff2a6d" stroke-width="5.5" opacity="0.95"/>
           <circle cx="92" cy="108" r="44" fill="none" stroke="#00e5ff" stroke-width="4.5" opacity="0.9"/>
           <circle cx="92" cy="108" r="29" fill="none" stroke="#c040ff" stroke-width="4" opacity="0.85"/>
           <circle cx="92" cy="108" r="14" fill="url(#centerGrad)"/>
           
-          <!-- PANAH PRESISI (ujung tepat di pusat, sudut & bentuk mirip asli) -->
           <g transform="translate(92,108) rotate(-32)">
-            <!-- Batang panah -->
             <rect x="8" y="-3.5" width="78" height="7" rx="3.5" fill="url(#arrowShaft)"/>
-            
-            <!-- Ujung panah (tajam) -->
             <path d="M86 -9 L110 0 L86 9 Z" fill="#ff2a6d"/>
             <path d="M86 -6 L102 0 L86 6 Z" fill="#ff60a0" opacity="0.9"/>
-            
-            <!-- Fletching / bulu belakang (lebih mirip asli) -->
             <path d="M8 -8 L-6 -14 L8 -3.5 Z" fill="#00e5ff" opacity="0.9"/>
             <path d="M8 8 L-6 14 L8 3.5 Z" fill="#00e5ff" opacity="0.9"/>
             <path d="M8 -5 L-2 -9 L8 -1 Z" fill="#80f0ff" opacity="0.7"/>
