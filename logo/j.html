@@ -61,15 +61,15 @@
       font-weight: 700;
     }
 
-    /* Positions - disesuaikan */
+    /* Positions */
     .t-tinggi { top: 78px;  left: 435px; }
     .a-atas   { top: 140px; left: 435px; }
     .i-inti   { top: 200px; left: 495px; }
-    .b-bawah  { top: 455px; left: 435px; }   /* lebih ke bawah */
-    .r-rendah { top: 535px; left: 435px; }   /* lebih ke bawah lagi */
+    .b-bawah  { top: 455px; left: 435px; }
+    .r-rendah { top: 535px; left: 435px; }
 
     .a-awal {
-      top: 365px;
+      top: 410px;          /* lebih ke bawah mengikuti sudut jam 7 */
       left: 30px;
     }
 
@@ -135,7 +135,7 @@
           </filter>
         </defs>
 
-        <!-- Main crystal shape -->
+        <!-- Main crystal shape (8 sudut) -->
         <path d="M100 20 
                  L160 80 
                  L175 160 
@@ -165,7 +165,7 @@
       </svg>
     </div>
 
-    <!-- ===== BRACKET JULAT (lebih presisi & panjang) ===== -->
+    <!-- Bracket JULAT -->
     <svg style="position:absolute; left:80px; top:60px; width:60px; height:510px;" viewBox="0 0 60 510">
       <path d="M48 6 
                Q6 6 6 48 
@@ -191,16 +191,16 @@
     <div class="dot blue" style="top:90px; left:415px;"></div>
     <div class="dot red"  style="top:548px; left:415px;"></div>
 
-    <!-- Garis biru atas (panjang 55px) -->
+    <!-- Garis biru atas -->
     <div style="position:absolute; top:96px; left:360px; width:55px; height:2px; background:#4fc3f7;"></div>
 
     <!-- Garis putus-putus INTI -->
     <div style="position:absolute; top:210px; left:390px; width:95px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
-    <!-- Garis putus-putus AWAL -->
-    <div style="position:absolute; top:375px; left:130px; width:115px; height:0; border-top:2px dashed #4fc3f7;"></div>
+    <!-- ===== GARIS A AWAL (sekarang di sudut jam 7) ===== -->
+    <div style="position:absolute; top:420px; left:130px; width:115px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
-    <!-- ===== GARIS MERAH BAWAH (panjang sama = 55px) ===== -->
+    <!-- Garis merah bawah (panjang sama dengan garis atas) -->
     <div style="position:absolute; top:554px; left:360px; width:55px; height:2px; background:#ff5252;"></div>
 
     <!-- Garis vertikal utama -->
