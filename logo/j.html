@@ -23,19 +23,20 @@
 
     .container {
       position: relative;
-      width: 740px;
-      height: 760px;
+      width: 580px;          /* diperkecil */
+      height: 620px;         /* diperkecil */
+      transform: scale(0.95); /* sedikit lebih kecil lagi */
     }
 
     /* Crystal */
     .crystal {
       position: absolute;
       left: 50%;
-      top: 46%;
+      top: 47%;
       transform: translate(-50%, -50%);
-      width: 220px;
-      height: 340px;
-      filter: drop-shadow(0 0 25px rgba(100, 180, 255, 0.6));
+      width: 180px;          /* diperkecil */
+      height: 280px;
+      filter: drop-shadow(0 0 20px rgba(100, 180, 255, 0.55));
     }
 
     .crystal svg {
@@ -47,38 +48,40 @@
     .label {
       position: absolute;
       color: white;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       letter-spacing: 1px;
       text-shadow: 0 0 8px rgba(100, 180, 255, 0.8);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .label .letter {
-      font-size: 22px;
+      font-size: 19px;
       font-weight: 700;
     }
 
     /* Positions */
-    .t-tinggi { top: 78px;  left: 435px; }
-    .a-atas   { top: 140px; left: 435px; }
-    .i-inti   { top: 200px; left: 495px; }
-    .b-bawah  { top: 455px; left: 435px; }
-    .r-rendah { top: 535px; left: 435px; }
+    .t-tinggi { top: 55px;  left: 355px; }
+    .a-atas   { top: 105px; left: 355px; }
+    .i-inti   { top: 155px; left: 400px; }
+    .b-bawah  { top: 375px; left: 355px; }
+    .r-rendah { top: 445px; left: 355px; }
 
+    /* A AWAL sekarang di jam 6 (bawah) */
     .a-awal {
-      top: 410px;          /* lebih ke bawah mengikuti sudut jam 7 */
-      left: 30px;
+      top: 480px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .julat {
       position: absolute;
-      left: 12px;
-      top: 260px;
+      left: 8px;
+      top: 210px;
       color: white;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: 2px;
       writing-mode: vertical-rl;
@@ -88,10 +91,10 @@
 
     .dot {
       position: absolute;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      box-shadow: 0 0 12px currentColor;
+      box-shadow: 0 0 10px currentColor;
     }
 
     .dot.blue { background: #4fc3f7; color: #4fc3f7; }
@@ -99,17 +102,17 @@
 
     .title {
       position: absolute;
-      bottom: 25px;
+      bottom: 18px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(90deg, #1a237e, #0d47a1);
       color: white;
-      padding: 12px 48px;
-      border-radius: 50px;
-      font-size: 26px;
+      padding: 10px 36px;
+      border-radius: 40px;
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: 4px;
-      box-shadow: 0 0 20px rgba(30, 100, 255, 0.5);
+      letter-spacing: 3px;
+      box-shadow: 0 0 18px rgba(30, 100, 255, 0.5);
     }
   </style>
 </head>
@@ -135,7 +138,6 @@
           </filter>
         </defs>
 
-        <!-- Main crystal shape (8 sudut) -->
         <path d="M100 20 
                  L160 80 
                  L175 160 
@@ -149,7 +151,6 @@
               stroke-width="2"
               filter="url(#glow)"/>
 
-        <!-- Facets -->
         <path d="M100 20 L160 80 L100 140 Z" fill="rgba(255,255,255,0.25)"/>
         <path d="M100 20 L40 80 L100 140 Z" fill="rgba(255,255,255,0.15)"/>
         <path d="M40 80 L25 160 L100 140 Z" fill="rgba(255,255,255,0.1)"/>
@@ -158,7 +159,6 @@
         <path d="M175 160 L145 280 L100 200 Z" fill="rgba(0,30,120,0.4)"/>
         <path d="M55 280 L100 300 L145 280 L100 200 Z" fill="rgba(0,20,80,0.5)"/>
 
-        <!-- Center circle -->
         <circle cx="100" cy="160" r="38" fill="rgba(10,20,50,0.7)" stroke="#7ec8ff" stroke-width="2"/>
         <text x="100" y="155" text-anchor="middle" fill="white" font-size="28" font-weight="bold">N</text>
         <text x="100" y="180" text-anchor="middle" fill="#a0d8ff" font-size="14" font-weight="600">NETO</text>
@@ -166,14 +166,14 @@
     </div>
 
     <!-- Bracket JULAT -->
-    <svg style="position:absolute; left:80px; top:60px; width:60px; height:510px;" viewBox="0 0 60 510">
-      <path d="M48 6 
-               Q6 6 6 48 
-               L6 462 
-               Q6 504 48 504" 
+    <svg style="position:absolute; left:55px; top:40px; width:50px; height:430px;" viewBox="0 0 50 430">
+      <path d="M40 5 
+               Q5 5 5 40 
+               L5 390 
+               Q5 425 40 425" 
             fill="none" 
             stroke="#4fc3f7" 
-            stroke-width="5"
+            stroke-width="4.5"
             stroke-linecap="round"/>
     </svg>
 
@@ -185,26 +185,30 @@
     <div class="label i-inti"><span class="letter">I</span> INTI</div>
     <div class="label b-bawah"><span class="letter">B</span> BAWAH</div>
     <div class="label r-rendah"><span class="letter">R</span> RENDAH</div>
+    
+    <!-- A AWAL di jam 6 -->
     <div class="label a-awal"><span class="letter">A</span> AWAL</div>
 
     <!-- Dots -->
-    <div class="dot blue" style="top:90px; left:415px;"></div>
-    <div class="dot red"  style="top:548px; left:415px;"></div>
+    <div class="dot blue" style="top:68px; left:340px;"></div>
+    <div class="dot red"  style="top:458px; left:340px;"></div>
 
-    <!-- Garis biru atas -->
-    <div style="position:absolute; top:96px; left:360px; width:55px; height:2px; background:#4fc3f7;"></div>
+    <!-- Garis biru atas (jam 12) -->
+    <div style="position:absolute; top:73px; left:295px; width:45px; height:2px; background:#4fc3f7;"></div>
 
-    <!-- Garis putus-putus INTI -->
-    <div style="position:absolute; top:210px; left:390px; width:95px; height:0; border-top:2px dashed #4fc3f7;"></div>
+    <!-- Garis putus-putus INTI (jam 12 area) -->
+    <div style="position:absolute; top:165px; left:320px; width:75px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
-    <!-- ===== GARIS A AWAL (sekarang di sudut jam 7) ===== -->
-    <div style="position:absolute; top:420px; left:130px; width:115px; height:0; border-top:2px dashed #4fc3f7;"></div>
+    <!-- ===== GARIS A AWAL di jam 6 (bawah) ===== -->
+    <div style="position:absolute; top:470px; left:50%; width:2px; height:25px; 
+                background: repeating-linear-gradient(to bottom, #4fc3f7 0, #4fc3f7 4px, transparent 4px, transparent 8px);
+                transform: translateX(-50%);"></div>
 
-    <!-- Garis merah bawah (panjang sama dengan garis atas) -->
-    <div style="position:absolute; top:554px; left:360px; width:55px; height:2px; background:#ff5252;"></div>
+    <!-- Garis merah bawah -->
+    <div style="position:absolute; top:463px; left:295px; width:45px; height:2px; background:#ff5252;"></div>
 
     <!-- Garis vertikal utama -->
-    <div style="position:absolute; top:92px; left:364px; width:2px; height:462px; 
+    <div style="position:absolute; top:70px; left:299px; width:2px; height:393px; 
                 background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 35%, transparent 48%, #ff5252 58%, #ff5252 100%);">
     </div>
 
