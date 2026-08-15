@@ -24,14 +24,14 @@
     .container {
       position: relative;
       width: 580px;
-      height: 640px;
+      height: 680px;
     }
 
     /* Crystal */
     .crystal {
       position: absolute;
       left: 50%;
-      top: 45%;
+      top: 43%;
       transform: translate(-50%, -50%);
       width: 180px;
       height: 280px;
@@ -61,26 +61,23 @@
       font-weight: 700;
     }
 
-    /* Positions */
-    .t-tinggi { top: 42px;  left: 355px; }
-    .a-atas   { top: 95px;  left: 355px; }
-    .i-inti   { top: 148px; left: 400px; }
+    /* Urutan dari atas ke bawah */
+    .t-tinggi { top: 38px;  left: 355px; }
+    .a-atas   { top: 90px;  left: 355px; }
+    .i-inti   { top: 142px; left: 400px; }
 
-    /* B BAWAH - dikoreksi */
-    .b-bawah  { top: 410px; left: 355px; }
-
-    .r-rendah { top: 470px; left: 355px; }
-
-    /* A AWAL - di kiri, sejajar jam 6 */
     .a-awal {
-      top: 462px;
-      left: 40px;
+      top: 415px;
+      left: 55px;
     }
+
+    .b-bawah  { top: 455px; left: 355px; }
+    .r-rendah { top: 515px; left: 355px; }
 
     .julat {
       position: absolute;
       left: 10px;
-      top: 200px;
+      top: 210px;
       color: white;
       font-size: 18px;
       font-weight: 700;
@@ -167,11 +164,11 @@
     </div>
 
     <!-- Bracket JULAT -->
-    <svg style="position:absolute; left:55px; top:30px; width:50px; height:470px;" viewBox="0 0 50 470">
+    <svg style="position:absolute; left:55px; top:20px; width:50px; height:520px;" viewBox="0 0 50 520">
       <path d="M40 5 
                Q5 5 5 40 
-               L5 430 
-               Q5 465 40 465" 
+               L5 480 
+               Q5 515 40 515" 
             fill="none" 
             stroke="#4fc3f7" 
             stroke-width="4.5"
@@ -184,33 +181,33 @@
     <div class="label t-tinggi"><span class="letter">T</span> TINGGI</div>
     <div class="label a-atas"><span class="letter">A</span> ATAS</div>
     <div class="label i-inti"><span class="letter">I</span> INTI</div>
+    <div class="label a-awal"><span class="letter">A</span> AWAL</div>
     <div class="label b-bawah"><span class="letter">B</span> BAWAH</div>
     <div class="label r-rendah"><span class="letter">R</span> RENDAH</div>
-    <div class="label a-awal"><span class="letter">A</span> AWAL</div>
 
-    <!-- Titik biru di jam 12 -->
-    <div class="dot blue" style="top:52px; left:285px;"></div>
+    <!-- Titik biru jam 12 -->
+    <div class="dot blue" style="top:45px; left:285px;"></div>
     
-    <!-- Titik merah di jam 6 -->
-    <div class="dot red"  style="top:470px; left:285px;"></div>
+    <!-- Titik merah jam 6 -->
+    <div class="dot red"  style="top:510px; left:285px;"></div>
 
     <!-- Garis biru horizontal dari jam 12 -->
-    <div style="position:absolute; top:57px; left:290px; width:55px; height:2px; background:#4fc3f7;"></div>
+    <div style="position:absolute; top:50px; left:290px; width:55px; height:2px; background:#4fc3f7;"></div>
 
-    <!-- Garis putus-putus INTI (kanan) -->
-    <div style="position:absolute; top:158px; left:310px; width:80px; height:0; border-top:2px dashed #4fc3f7;"></div>
+    <!-- Garis putus-putus INTI -->
+    <div style="position:absolute; top:152px; left:310px; width:80px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
-    <!-- Garis merah horizontal dari jam 6 -->
-    <div style="position:absolute; top:475px; left:290px; width:55px; height:2px; background:#ff5252;"></div>
-
-    <!-- ===== GARIS PUTUS-PUTUS A AWAL (HORIZONTAL) sejajar jam 6 ===== -->
-    <div style="position:absolute; top:475px; left:115px; width:170px; height:0; 
+    <!-- Garis putus-putus A AWAL - ujung kanan lebih merapat ke jam 6 -->
+    <div style="position:absolute; top:425px; left:145px; width:130px; height:0; 
                 border-top:2px dashed #4fc3f7;">
     </div>
 
+    <!-- Garis merah horizontal dari jam 6 -->
+    <div style="position:absolute; top:515px; left:290px; width:55px; height:2px; background:#ff5252;"></div>
+
     <!-- Garis vertikal utama -->
-    <div style="position:absolute; top:57px; left:289px; width:2px; height:418px; 
-                background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 28%, transparent 45%, #ff5252 55%, #ff5252 100%);">
+    <div style="position:absolute; top:50px; left:289px; width:2px; height:465px; 
+                background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 22%, transparent 40%, #ff5252 55%, #ff5252 100%);">
     </div>
 
     <div class="title">TABRANIJ</div>
