@@ -61,22 +61,20 @@
       font-weight: 700;
     }
 
-    /* Positions yang sudah benar (T, A, I) tetap dipertahankan */
+    /* Positions */
     .t-tinggi { top: 42px;  left: 355px; }
     .a-atas   { top: 95px;  left: 355px; }
     .i-inti   { top: 148px; left: 400px; }
 
-    /* B BAWAH dikoreksi lebih ke bawah */
-    .b-bawah  { top: 395px; left: 355px; }
+    /* B BAWAH - dikoreksi */
+    .b-bawah  { top: 410px; left: 355px; }
 
-    /* R RENDAH */
-    .r-rendah { top: 460px; left: 355px; }
+    .r-rendah { top: 470px; left: 355px; }
 
-    /* A AWAL tepat di bawah sudut jam 6 */
+    /* A AWAL - di kiri, sejajar jam 6 */
     .a-awal {
-      top: 505px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 462px;
+      left: 40px;
     }
 
     .julat {
@@ -117,15 +115,6 @@
       letter-spacing: 3px;
       box-shadow: 0 0 18px rgba(30, 100, 255, 0.5);
     }
-
-    /* Koordinat bantu (bisa dihapus nanti) */
-    .coord {
-      position: absolute;
-      font-size: 11px;
-      color: #4fc3f7;
-      opacity: 0.7;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body>
@@ -150,7 +139,6 @@
           </filter>
         </defs>
 
-        <!-- Kristal dengan 8 sudut -->
         <path d="M100 20 
                  L160 80 
                  L175 160 
@@ -164,7 +152,6 @@
               stroke-width="2"
               filter="url(#glow)"/>
 
-        <!-- Facets -->
         <path d="M100 20 L160 80 L100 140 Z" fill="rgba(255,255,255,0.25)"/>
         <path d="M100 20 L40 80 L100 140 Z" fill="rgba(255,255,255,0.15)"/>
         <path d="M40 80 L25 160 L100 140 Z" fill="rgba(255,255,255,0.1)"/>
@@ -173,25 +160,18 @@
         <path d="M175 160 L145 280 L100 200 Z" fill="rgba(0,30,120,0.4)"/>
         <path d="M55 280 L100 300 L145 280 L100 200 Z" fill="rgba(0,20,80,0.5)"/>
 
-        <!-- Titik pusat NETO -->
         <circle cx="100" cy="160" r="36" fill="rgba(10,20,50,0.7)" stroke="#7ec8ff" stroke-width="2"/>
         <text x="100" y="153" text-anchor="middle" fill="white" font-size="26" font-weight="bold">N</text>
         <text x="100" y="178" text-anchor="middle" fill="#a0d8ff" font-size="13" font-weight="600">NETO</text>
-
-        <!-- Koordinat sudut (opsional - bisa dihapus) -->
-        <!-- Jam 12 -->
-        <circle cx="100" cy="20" r="3" fill="#4fc3f7"/>
-        <!-- Jam 6 -->
-        <circle cx="100" cy="300" r="3" fill="#ff5252"/>
       </svg>
     </div>
 
     <!-- Bracket JULAT -->
-    <svg style="position:absolute; left:55px; top:30px; width:50px; height:460px;" viewBox="0 0 50 460">
+    <svg style="position:absolute; left:55px; top:30px; width:50px; height:470px;" viewBox="0 0 50 470">
       <path d="M40 5 
                Q5 5 5 40 
-               L5 420 
-               Q5 455 40 455" 
+               L5 430 
+               Q5 465 40 465" 
             fill="none" 
             stroke="#4fc3f7" 
             stroke-width="4.5"
@@ -208,34 +188,27 @@
     <div class="label r-rendah"><span class="letter">R</span> RENDAH</div>
     <div class="label a-awal"><span class="letter">A</span> AWAL</div>
 
-    <!-- Titik biru tepat di sudut jam 12 -->
+    <!-- Titik biru di jam 12 -->
     <div class="dot blue" style="top:52px; left:285px;"></div>
     
-    <!-- Titik merah tepat di sudut jam 6 -->
+    <!-- Titik merah di jam 6 -->
     <div class="dot red"  style="top:470px; left:285px;"></div>
 
-    <!-- Garis biru horizontal dari sudut jam 12 -->
+    <!-- Garis biru horizontal dari jam 12 -->
     <div style="position:absolute; top:57px; left:290px; width:55px; height:2px; background:#4fc3f7;"></div>
 
-    <!-- Garis putus-putus INTI -->
+    <!-- Garis putus-putus INTI (kanan) -->
     <div style="position:absolute; top:158px; left:310px; width:80px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
-    <!-- Garis merah horizontal dari sudut jam 6 -->
+    <!-- Garis merah horizontal dari jam 6 -->
     <div style="position:absolute; top:475px; left:290px; width:55px; height:2px; background:#ff5252;"></div>
 
-    <!-- Garis putus-putus A AWAL - tepat sejajar sudut jam 6 -->
-    <div style="position:absolute; top:475px; left:50%; width:2px; height:35px;
-                background: repeating-linear-gradient(
-                  to bottom,
-                  #4fc3f7 0px,
-                  #4fc3f7 5px,
-                  transparent 5px,
-                  transparent 10px
-                );
-                transform: translateX(-50%);">
+    <!-- ===== GARIS PUTUS-PUTUS A AWAL (HORIZONTAL) sejajar jam 6 ===== -->
+    <div style="position:absolute; top:475px; left:115px; width:170px; height:0; 
+                border-top:2px dashed #4fc3f7;">
     </div>
 
-    <!-- Garis vertikal utama dari jam 12 ke jam 6 -->
+    <!-- Garis vertikal utama -->
     <div style="position:absolute; top:57px; left:289px; width:2px; height:418px; 
                 background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 28%, transparent 45%, #ff5252 55%, #ff5252 100%);">
     </div>
