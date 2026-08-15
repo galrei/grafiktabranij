@@ -3,214 +3,187 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N NETO - Pure Code</title>
+  <title>N NETO - Three.js Glass Crystal</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       min-height: 100vh;
       background: #02040a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Segoe UI', system-ui, sans-serif;
       overflow: hidden;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
-
-    /* grid background */
-    body::before {
-      content: "";
+    #canvas-container {
       position: absolute;
       inset: 0;
-      background-image: 
-        linear-gradient(rgba(70, 130, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(70, 130, 255, 0.05) 1px, transparent 1px);
-      background-size: 55px 55px;
-      mask-image: radial-gradient(ellipse at center, black 25%, transparent 70%);
+    }
+    canvas { display: block; }
+
+    /* Labels overlay */
+    .label {
+      position: absolute;
+      color: #c0e8ff;
+      font-size: 15px;
+      font-weight: 600;
       pointer-events: none;
+      text-shadow: 0 0 8px rgba(0,180,255,0.6);
+      z-index: 10;
+    }
+    .label.green { color: #3ce090; }
+    .label.red { color: #ff6b8a; }
+    .label.cyan { color: #00e5ff; }
+
+    #julat {
+      left: 38px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #00e5ff;
     }
 
-    .stage {
-      width: 460px;
-      height: 560px;
-      position: relative;
+    #tinggi { top: 9%; left: 54%; }
+    #atas { top: 22%; left: 68%; }
+    #inti { top: 42%; left: 72%; }
+    #awal { top: 58%; left: 12%; }
+    #bawah { top: 78%; left: 54%; }
+    #rendah { top: 82%; left: 54%; }
+
+    #tabranij {
+      position: absolute;
+      bottom: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 30, 70, 0.85);
+      border: 2px solid #00c4ff;
+      color: #00e5ff;
+      padding: 8px 28px;
+      border-radius: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 15px;
+      z-index: 10;
     }
 
-    svg {
-      width: 100%;
-      height: 100%;
+    /* brace */
+    #brace {
+      position: absolute;
+      left: 70px;
+      top: 12%;
+      height: 68%;
+      width: 20px;
+      border: 5px solid #00e5ff;
+      border-right: none;
+      border-radius: 30px 0 0 30px;
+      box-shadow: 0 0 15px #00e5ff;
+      z-index: 5;
     }
   </style>
 </head>
 <body>
-  <div class="stage">
-    <svg viewBox="0 0 460 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <!-- Main crystal body -->
-        <linearGradient id="mainGrad" x1="15%" y1="0%" x2="85%" y2="100%">
-          <stop offset="0%" stop-color="#00f2ff" stop-opacity="0.95"/>
-          <stop offset="25%" stop-color="#3aa0ff" stop-opacity="0.82"/>
-          <stop offset="55%" stop-color="#b03fff" stop-opacity="0.88"/>
-          <stop offset="80%" stop-color="#ff4ec8" stop-opacity="0.75"/>
-          <stop offset="100%" stop-color="#ff7ae0" stop-opacity="0.6"/>
-        </linearGradient>
+  <div id="canvas-container"></div>
 
-        <!-- Side face darker -->
-        <linearGradient id="sideGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#0088cc" stop-opacity="0.7"/>
-          <stop offset="100%" stop-color="#6b1fff" stop-opacity="0.55"/>
-        </linearGradient>
+  <!-- Labels -->
+  <div id="brace"></div>
+  <div id="julat" class="label cyan">JULAT</div>
+  <div id="tinggi" class="label">T TINGGI</div>
+  <div id="atas" class="label">A ATAS</div>
+  <div id="inti" class="label">I INTI</div>
+  <div id="awal" class="label green">A AWAL</div>
+  <div id="bawah" class="label">B BAWAH</div>
+  <div id="rendah" class="label red">R RENDAH</div>
+  <div id="tabranij">TABRANIJ</div>
 
-        <!-- Bright edge -->
-        <linearGradient id="bright" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-          <stop offset="40%" stop-color="#a0f0ff" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#00c8ff" stop-opacity="0.15"/>
-        </linearGradient>
+  <!-- Three.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Scene setup
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x02040a);
 
-        <!-- Strong glow -->
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 6.5);
 
-        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur stdDeviation="7" result="b"/>
-          <feMerge>
-            <feMergeNode in="b"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    container.appendChild(renderer.domElement);
 
-      <!-- ========== JULAT ========== -->
-      <path d="M88 55 
-               C68 55 62 70 62 90 
-               L62 445 
-               C62 465 68 480 88 480" 
-            stroke="#00e5ff" 
-            stroke-width="5.5" 
-            fill="none" 
-            stroke-linecap="round"
-            filter="url(#soft)"/>
+    // Lights for neon glass look
+    const ambient = new THREE.AmbientLight(0x112233, 0.4);
+    scene.add(ambient);
 
-      <text x="38" y="275" 
-            fill="#00e5ff" 
-            font-size="20" 
-            font-weight="700" 
-            letter-spacing="1.5"
-            transform="rotate(-90 38 275)" 
-            text-anchor="middle">JULAT</text>
+    const light1 = new THREE.PointLight(0x00e5ff, 2.5, 20);
+    light1.position.set(3, 4, 5);
+    scene.add(light1);
 
-      <!-- ========== CRYSTAL BODY ========== -->
-      <!-- Left side face -->
-      <path d="M230 85 
-               L185 145 
-               L185 385 
-               L230 460 
-               L230 85" 
-            fill="url(#sideGrad)" 
-            opacity="0.75"/>
+    const light2 = new THREE.PointLight(0xff40c0, 2.2, 20);
+    light2.position.set(-3, -2, 4);
+    scene.add(light2);
 
-      <!-- Right side face -->
-      <path d="M230 85 
-               L275 145 
-               L275 385 
-               L230 460 
-               L230 85" 
-            fill="url(#sideGrad)" 
-            opacity="0.55"/>
+    const light3 = new THREE.PointLight(0x80a0ff, 1.5, 15);
+    light3.position.set(0, 5, -3);
+    scene.add(light3);
 
-      <!-- Main front face -->
-      <path d="M230 85 
-               L275 145 
-               L275 385 
-               L230 460 
-               L185 385 
-               L185 145 Z" 
-            fill="url(#mainGrad)" 
-            stroke="#b0f0ff" 
-            stroke-width="2"
-            filter="url(#glow)"
-            opacity="0.92"/>
+    // Crystal geometry (pointed top & bottom)
+    const points = [];
+    points.push(new THREE.Vector2(0, 1.8));      // top tip
+    points.push(new THREE.Vector2(0.85, 1.1));
+    points.push(new THREE.Vector2(0.95, 0.3));
+    points.push(new THREE.Vector2(0.95, -0.9));
+    points.push(new THREE.Vector2(0.85, -1.5));
+    points.push(new THREE.Vector2(0, -1.9));     // bottom tip
 
-      <!-- Internal facet lines -->
-      <path d="M230 85 L230 460" stroke="#ffffff" stroke-width="1.6" opacity="0.5"/>
-      <path d="M185 145 L275 145" stroke="#d0f8ff" stroke-width="1.4" opacity="0.45"/>
-      <path d="M185 385 L275 385" stroke="#e090ff" stroke-width="1.4" opacity="0.45"/>
-      <path d="M200 200 L260 200" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
-      <path d="M200 320 L260 320" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
-      <path d="M205 255 L255 255" stroke="#ffffff" stroke-width="0.8" opacity="0.22"/>
+    const geometry = new THREE.LatheGeometry(points, 8); // 8 sides = faceted
 
-      <!-- Top bright edges -->
-      <path d="M230 85 L275 145" stroke="url(#bright)" stroke-width="2.8" fill="none" opacity="0.85"/>
-      <path d="M230 85 L185 145" stroke="url(#bright)" stroke-width="2.8" fill="none" opacity="0.85"/>
+    // Glass material
+    const material = new THREE.MeshPhysicalMaterial({
+      color: 0xa0e0ff,
+      metalness: 0.1,
+      roughness: 0.05,
+      transmission: 0.95,          // glass transparency
+      thickness: 1.5,
+      ior: 1.5,
+      transparent: true,
+      opacity: 0.9,
+      clearcoat: 1,
+      clearcoatRoughness: 0.05,
+      envMapIntensity: 2,
+      side: THREE.DoubleSide
+    });
 
-      <!-- Bottom edges -->
-      <path d="M230 460 L275 385" stroke="#ff80d0" stroke-width="1.8" opacity="0.5"/>
-      <path d="M230 460 L185 385" stroke="#ff80d0" stroke-width="1.8" opacity="0.5"/>
+    const crystal = new THREE.Mesh(geometry, material);
+    crystal.rotation.y = Math.PI / 8;
+    scene.add(crystal);
 
-      <!-- Text N NETO -->
-      <text x="230" y="268" 
-            text-anchor="middle" 
-            fill="#ffffff" 
-            font-size="46" 
-            font-weight="800"
-            filter="url(#glow)">N</text>
-      <text x="230" y="298" 
-            text-anchor="middle" 
-            fill="#ffffff" 
-            font-size="17" 
-            font-weight="700" 
-            letter-spacing="2.5">NETO</text>
+    // Soft outer glow (using another slightly larger mesh)
+    const glowMat = new THREE.MeshBasicMaterial({
+      color: 0x00c8ff,
+      transparent: true,
+      opacity: 0.12,
+      side: THREE.BackSide
+    });
+    const glowMesh = new THREE.Mesh(geometry.clone().scale(1.08, 1.08, 1.08), glowMat);
+    scene.add(glowMesh);
 
-      <!-- ========== LABELS ========== -->
+    // Animation
+    function animate() {
+      requestAnimationFrame(animate);
+      crystal.rotation.y += 0.004;
+      glowMesh.rotation.y = crystal.rotation.y;
+      renderer.render(scene, camera);
+    }
+    animate();
 
-      <!-- T TINGGI -->
-      <circle cx="230" cy="48" r="7.5" fill="#00b4ff" filter="url(#glow)"/>
-      <line x1="230" y1="55.5" x2="230" y2="85" stroke="#7ec8ff" stroke-width="2.8"/>
-      <text x="250" y="55" fill="#c0e8ff" font-size="15" font-weight="600">T TINGGI</text>
-
-      <!-- A ATAS -->
-      <text x="290" y="135" fill="#c0e8ff" font-size="15" font-weight="500">A ATAS</text>
-
-      <!-- I INTI -->
-      <text x="325" y="255" fill="#90e0ff" font-size="15" font-weight="600">I INTI</text>
-      <line x1="275" y1="262" x2="315" y2="262" 
-            stroke="#00e5ff" stroke-width="2.2" stroke-dasharray="5 4"/>
-      <polygon points="315,257 328,262 315,267" fill="#00e5ff"/>
-
-      <!-- A AWAL -->
-      <text x="55" y="350" fill="#3ce090" font-size="15" font-weight="600">A AWAL</text>
-      <line x1="130" y1="357" x2="185" y2="357" 
-            stroke="#3ce090" stroke-width="2.2" stroke-dasharray="5 4"/>
-      <polygon points="130,352 118,357 130,362" fill="#3ce090"/>
-
-      <!-- B BAWAH + R RENDAH -->
-      <line x1="230" y1="460" x2="230" y2="490" stroke="#7ec8ff" stroke-width="2.8"/>
-      <circle cx="230" cy="500" r="7.5" fill="#ff3d60" filter="url(#glow)"/>
-      <text x="250" y="485" fill="#c0e8ff" font-size="15" font-weight="500">B BAWAH</text>
-      <text x="250" y="508" fill="#ff6b8a" font-size="15" font-weight="600">R RENDAH</text>
-
-      <!-- TABRANIJ -->
-      <rect x="145" y="525" width="170" height="30" rx="15" 
-            fill="rgba(0, 28, 65, 0.8)" 
-            stroke="#00c4ff" 
-            stroke-width="2"/>
-      <text x="230" y="546" 
-            text-anchor="middle" 
-            fill="#00e5ff" 
-            font-size="15" 
-            font-weight="700" 
-            letter-spacing="2">TABRANIJ</text>
-    </svg>
-  </div>
+    // Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
 </body>
 </html>
