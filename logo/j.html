@@ -23,15 +23,15 @@
 
     .container {
       position: relative;
-      width: 720px;
-      height: 720px;
+      width: 740px;
+      height: 760px;
     }
 
     /* Crystal */
     .crystal {
       position: absolute;
       left: 50%;
-      top: 48%;
+      top: 46%;
       transform: translate(-50%, -50%);
       width: 220px;
       height: 340px;
@@ -61,22 +61,22 @@
       font-weight: 700;
     }
 
-    /* Positions */
-    .t-tinggi { top: 85px;  left: 430px; }
-    .a-atas   { top: 145px; left: 430px; }
-    .i-inti   { top: 205px; left: 490px; }
-    .b-bawah  { top: 420px; left: 430px; }
-    .r-rendah { top: 500px; left: 430px; }
+    /* Positions - disesuaikan */
+    .t-tinggi { top: 78px;  left: 435px; }
+    .a-atas   { top: 140px; left: 435px; }
+    .i-inti   { top: 200px; left: 495px; }
+    .b-bawah  { top: 455px; left: 435px; }   /* lebih ke bawah */
+    .r-rendah { top: 535px; left: 435px; }   /* lebih ke bawah lagi */
 
     .a-awal {
-      top: 370px;
-      left: 35px;
+      top: 365px;
+      left: 30px;
     }
 
     .julat {
       position: absolute;
-      left: 18px;
-      top: 250px;
+      left: 12px;
+      top: 260px;
       color: white;
       font-size: 22px;
       font-weight: 700;
@@ -99,7 +99,7 @@
 
     .title {
       position: absolute;
-      bottom: 30px;
+      bottom: 25px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(90deg, #1a237e, #0d47a1);
@@ -165,12 +165,12 @@
       </svg>
     </div>
 
-    <!-- ===== BRACKET JULAT (lebih panjang) ===== -->
-    <svg style="position:absolute; left:85px; top:70px; width:55px; height:460px;" viewBox="0 0 55 460">
-      <path d="M45 8 
-               Q8 8 8 45 
-               L8 415 
-               Q8 452 45 452" 
+    <!-- ===== BRACKET JULAT (lebih presisi & panjang) ===== -->
+    <svg style="position:absolute; left:80px; top:60px; width:60px; height:510px;" viewBox="0 0 60 510">
+      <path d="M48 6 
+               Q6 6 6 48 
+               L6 462 
+               Q6 504 48 504" 
             fill="none" 
             stroke="#4fc3f7" 
             stroke-width="5"
@@ -188,24 +188,24 @@
     <div class="label a-awal"><span class="letter">A</span> AWAL</div>
 
     <!-- Dots -->
-    <div class="dot blue" style="top:98px; left:410px;"></div>
-    <div class="dot red"  style="top:515px; left:410px;"></div>
+    <div class="dot blue" style="top:90px; left:415px;"></div>
+    <div class="dot red"  style="top:548px; left:415px;"></div>
 
-    <!-- Garis penghubung biru atas -->
-    <div style="position:absolute; top:104px; left:355px; width:55px; height:2px; background:#4fc3f7;"></div>
+    <!-- Garis biru atas (panjang 55px) -->
+    <div style="position:absolute; top:96px; left:360px; width:55px; height:2px; background:#4fc3f7;"></div>
 
     <!-- Garis putus-putus INTI -->
-    <div style="position:absolute; top:215px; left:385px; width:95px; height:0; border-top:2px dashed #4fc3f7;"></div>
+    <div style="position:absolute; top:210px; left:390px; width:95px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
     <!-- Garis putus-putus AWAL -->
-    <div style="position:absolute; top:380px; left:135px; width:110px; height:0; border-top:2px dashed #4fc3f7;"></div>
+    <div style="position:absolute; top:375px; left:130px; width:115px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
-    <!-- ===== GARIS MERAH BAWAH (lebih panjang) ===== -->
-    <div style="position:absolute; top:521px; left:300px; width:110px; height:2px; background:#ff5252;"></div>
+    <!-- ===== GARIS MERAH BAWAH (panjang sama = 55px) ===== -->
+    <div style="position:absolute; top:554px; left:360px; width:55px; height:2px; background:#ff5252;"></div>
 
     <!-- Garis vertikal utama -->
-    <div style="position:absolute; top:100px; left:359px; width:2px; height:425px; 
-                background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 40%, transparent 50%, #ff5252 60%, #ff5252 100%);">
+    <div style="position:absolute; top:92px; left:364px; width:2px; height:462px; 
+                background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 35%, transparent 48%, #ff5252 58%, #ff5252 100%);">
     </div>
 
     <div class="title">TABRANIJ</div>
