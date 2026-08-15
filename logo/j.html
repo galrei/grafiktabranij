@@ -23,18 +23,17 @@
 
     .container {
       position: relative;
-      width: 580px;          /* diperkecil */
-      height: 620px;         /* diperkecil */
-      transform: scale(0.95); /* sedikit lebih kecil lagi */
+      width: 580px;
+      height: 620px;
     }
 
     /* Crystal */
     .crystal {
       position: absolute;
       left: 50%;
-      top: 47%;
+      top: 46%;
       transform: translate(-50%, -50%);
-      width: 180px;          /* diperkecil */
+      width: 180px;
       height: 280px;
       filter: drop-shadow(0 0 20px rgba(100, 180, 255, 0.55));
     }
@@ -63,23 +62,23 @@
     }
 
     /* Positions */
-    .t-tinggi { top: 55px;  left: 355px; }
-    .a-atas   { top: 105px; left: 355px; }
-    .i-inti   { top: 155px; left: 400px; }
-    .b-bawah  { top: 375px; left: 355px; }
-    .r-rendah { top: 445px; left: 355px; }
+    .t-tinggi { top: 48px;  left: 355px; }
+    .a-atas   { top: 100px; left: 355px; }
+    .i-inti   { top: 150px; left: 400px; }
+    .b-bawah  { top: 370px; left: 355px; }
+    .r-rendah { top: 440px; left: 355px; }
 
-    /* A AWAL sekarang di jam 6 (bawah) */
+    /* A AWAL di jam 6 */
     .a-awal {
-      top: 480px;
+      top: 485px;
       left: 50%;
       transform: translateX(-50%);
     }
 
     .julat {
       position: absolute;
-      left: 8px;
-      top: 210px;
+      left: 10px;
+      top: 200px;
       color: white;
       font-size: 18px;
       font-weight: 700;
@@ -102,7 +101,7 @@
 
     .title {
       position: absolute;
-      bottom: 18px;
+      bottom: 15px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(90deg, #1a237e, #0d47a1);
@@ -159,18 +158,18 @@
         <path d="M175 160 L145 280 L100 200 Z" fill="rgba(0,30,120,0.4)"/>
         <path d="M55 280 L100 300 L145 280 L100 200 Z" fill="rgba(0,20,80,0.5)"/>
 
-        <circle cx="100" cy="160" r="38" fill="rgba(10,20,50,0.7)" stroke="#7ec8ff" stroke-width="2"/>
-        <text x="100" y="155" text-anchor="middle" fill="white" font-size="28" font-weight="bold">N</text>
-        <text x="100" y="180" text-anchor="middle" fill="#a0d8ff" font-size="14" font-weight="600">NETO</text>
+        <circle cx="100" cy="160" r="36" fill="rgba(10,20,50,0.7)" stroke="#7ec8ff" stroke-width="2"/>
+        <text x="100" y="153" text-anchor="middle" fill="white" font-size="26" font-weight="bold">N</text>
+        <text x="100" y="178" text-anchor="middle" fill="#a0d8ff" font-size="13" font-weight="600">NETO</text>
       </svg>
     </div>
 
     <!-- Bracket JULAT -->
-    <svg style="position:absolute; left:55px; top:40px; width:50px; height:430px;" viewBox="0 0 50 430">
+    <svg style="position:absolute; left:55px; top:35px; width:50px; height:440px;" viewBox="0 0 50 440">
       <path d="M40 5 
                Q5 5 5 40 
-               L5 390 
-               Q5 425 40 425" 
+               L5 400 
+               Q5 435 40 435" 
             fill="none" 
             stroke="#4fc3f7" 
             stroke-width="4.5"
@@ -185,31 +184,38 @@
     <div class="label i-inti"><span class="letter">I</span> INTI</div>
     <div class="label b-bawah"><span class="letter">B</span> BAWAH</div>
     <div class="label r-rendah"><span class="letter">R</span> RENDAH</div>
-    
-    <!-- A AWAL di jam 6 -->
     <div class="label a-awal"><span class="letter">A</span> AWAL</div>
 
-    <!-- Dots -->
-    <div class="dot blue" style="top:68px; left:340px;"></div>
-    <div class="dot red"  style="top:458px; left:340px;"></div>
+    <!-- Titik biru tepat di jam 12 -->
+    <div class="dot blue" style="top:58px; left:285px;"></div>
+    
+    <!-- Titik merah tepat di jam 6 -->
+    <div class="dot red"  style="top:455px; left:285px;"></div>
 
-    <!-- Garis biru atas (jam 12) -->
-    <div style="position:absolute; top:73px; left:295px; width:45px; height:2px; background:#4fc3f7;"></div>
+    <!-- Garis biru horizontal dari sudut jam 12 -->
+    <div style="position:absolute; top:63px; left:290px; width:55px; height:2px; background:#4fc3f7;"></div>
 
-    <!-- Garis putus-putus INTI (jam 12 area) -->
-    <div style="position:absolute; top:165px; left:320px; width:75px; height:0; border-top:2px dashed #4fc3f7;"></div>
+    <!-- Garis putus-putus INTI -->
+    <div style="position:absolute; top:160px; left:310px; width:80px; height:0; border-top:2px dashed #4fc3f7;"></div>
 
-    <!-- ===== GARIS A AWAL di jam 6 (bawah) ===== -->
-    <div style="position:absolute; top:470px; left:50%; width:2px; height:25px; 
-                background: repeating-linear-gradient(to bottom, #4fc3f7 0, #4fc3f7 4px, transparent 4px, transparent 8px);
-                transform: translateX(-50%);"></div>
+    <!-- Garis merah horizontal dari sudut jam 6 -->
+    <div style="position:absolute; top:460px; left:290px; width:55px; height:2px; background:#ff5252;"></div>
 
-    <!-- Garis merah bawah -->
-    <div style="position:absolute; top:463px; left:295px; width:45px; height:2px; background:#ff5252;"></div>
+    <!-- ===== Garis putus-putus A AWAL tepat sejajar sudut jam 6 ===== -->
+    <div style="position:absolute; top:460px; left:50%; width:2px; height:30px;
+                background: repeating-linear-gradient(
+                  to bottom,
+                  #4fc3f7 0px,
+                  #4fc3f7 5px,
+                  transparent 5px,
+                  transparent 10px
+                );
+                transform: translateX(-50%);">
+    </div>
 
-    <!-- Garis vertikal utama -->
-    <div style="position:absolute; top:70px; left:299px; width:2px; height:393px; 
-                background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 35%, transparent 48%, #ff5252 58%, #ff5252 100%);">
+    <!-- Garis vertikal utama (dari jam 12 ke jam 6) -->
+    <div style="position:absolute; top:63px; left:289px; width:2px; height:397px; 
+                background: linear-gradient(to bottom, #4fc3f7 0%, #4fc3f7 30%, transparent 45%, #ff5252 55%, #ff5252 100%);">
     </div>
 
     <div class="title">TABRANIJ</div>
